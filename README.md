@@ -6,4 +6,4 @@ Davi Monteiro Paiva - dmp
   
 Gustavo Campos - gcc2  
   
-Lucas Cavalcante - loc
+Lucas Cavalcanti - loc
