@@ -31,7 +31,7 @@ public class Reservas implements InterfaceReservas {
 
         // Implementação da busca de histórico
         String email = usuario.getEmail();
-        System.out.println("Histórico encontrado.");
+        System.out.println(email);
 
     }
 
@@ -40,7 +40,7 @@ public class Reservas implements InterfaceReservas {
 
       Reserva NovaReserva = new Reserva( null , valor, carro, dataInicio, dataTermino, taxa, usuario);
 
-      System.out.println(NovaReserva.);
+      System.out.println(NovaReserva.getValor());
     }
 
     @Override
