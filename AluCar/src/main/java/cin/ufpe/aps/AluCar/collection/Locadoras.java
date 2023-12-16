@@ -2,34 +2,32 @@ package cin.ufpe.aps.AluCar.collection;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cin.ufpe.aps.AluCar.dtos.CarDTO;
+import cin.ufpe.aps.AluCar.models.Car;
 
 public class Locadoras {
 
-    private List<CarDTO> cars;
+    private List<Car> cars;
 
     public Locadoras() {
         this.cars = new ArrayList<>();
     }
 
-    public List<CarDTO> getCarros() {
-        return cars;
+    public List<Car> getCarros() {
+        return this.cars;
     }
 
-    public void addCarro(CarDTO car) {
+    public void addCarro(Car car) {
         this.cars.add(car);
     }
 
     public void visualizarLocadoras() {
         System.out.println("Locadora: ");
-        for (CarDTO car : cars) { 
-        System.out.println(car.placa());
+        for (Car car : this.cars) { 
+        System.out.println(car.getPlaca());
         }
     }
 
     public void modificacoesLocadoras() {
-        // TODO: Implement logic for modifying locadora details
     }
 
 }

@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import cin.ufpe.aps.AluCar.Facade;
-import cin.ufpe.aps.AluCar.dtos.CarDTO;
+import cin.ufpe.aps.AluCar.models.Car;
 
 @RestController
 @RequestMapping("/admin")
@@ -17,17 +17,17 @@ public class ControlePainelAdmistrativo {
     private Facade facade;
 
     @PostMapping("/adicionarCarro")
-    public ResponseEntity<String> adicionarCarro(@RequestBody CarDTO carDTO) {
-        return facade.adicionarCarro(carDTO);
+    public ResponseEntity<String> adicionarCarro(@RequestBody Car car) {
+        return facade.adicionarCarro(car);
     }
 
     @GetMapping("/visualizarLocadoras")
-    public ResponseEntity<List<CarDTO>> visualizarLocadoras() {
+    public ResponseEntity<List<Car>> visualizarLocadoras() {
         return facade.visualizarLocadoras();
     }
 
     @PutMapping("/modificarLocadoras")
-    public ResponseEntity<String> modificarLocadoras(@RequestBody CarModel carDTO) {
-        return facade.modificarLocadoras(carDTO);
+    public ResponseEntity<String> modificarLocadoras(@RequestBody Car car) {
+        return facade.modificarLocadoras(car);
     }
 }

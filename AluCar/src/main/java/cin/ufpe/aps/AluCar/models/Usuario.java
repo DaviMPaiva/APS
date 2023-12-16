@@ -41,7 +41,7 @@ public class Usuario {
     }
 
     public Cartao getCartao() {
-        return cartao;
+        return this.cartao;
     }
 
     public void setCartao(Cartao cartao) {
