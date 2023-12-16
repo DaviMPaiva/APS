@@ -13,21 +13,4 @@ import cin.ufpe.aps.AluCar.models.Car;
 @RequestMapping("/admin")
 public class ControlePainelAdmistrativo {
 
-    @Autowired
-    private Facade facade;
-
-    @PostMapping("/adicionarCarro")
-    public ResponseEntity<String> adicionarCarro(@RequestBody Car car) {
-        return facade.adicionarCarro(car);
-    }
-
-    @GetMapping("/visualizarLocadoras")
-    public ResponseEntity<List<Car>> visualizarLocadoras() {
-        return facade.visualizarLocadoras();
-    }
-
-    @PutMapping("/modificarLocadoras")
-    public ResponseEntity<String> modificarLocadoras(@RequestBody Car car) {
-        return facade.modificarLocadoras(car);
-    }
 }

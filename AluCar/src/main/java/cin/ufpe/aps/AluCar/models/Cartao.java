@@ -5,10 +5,10 @@ public class Cartao {
     private String numero;
     private String titular;
     private String dataValidade;
-    private Integer cvc;
+    private String cvc;
 
     // Construtor do Cartão
-    public Cartao(String numero, String titular, String dataValidade, Integer cvc) {
+    public Cartao(String numero, String titular, String dataValidade, String cvc) {
         this.numero = numero;
         this.titular = titular;
         this.dataValidade = dataValidade;
@@ -40,11 +40,11 @@ public class Cartao {
         this.dataValidade = dataValidade;
     }
 
-    public Integer getCvc() {
+    public String getCvc() {
         return this.cvc;
     }
 
-    public void setCvc(Integer cvc) {
+    public void setCvc(String cvc) {
         this.cvc = cvc;
     }
 }

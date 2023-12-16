@@ -1,94 +1,56 @@
-public class RealReservas implements Reservas{
+package cin.ufpe.aps.AluCar.collection;
 
-    private int id;
-    private Date dataReserva;
-    private Cliente cliente;
-    private Carro carro;
-    private float valorReserva;
-    private boolean pago;
-  
-    public Reservas(int id, Date dataReserva, Cliente cliente, Carro carro, float valorReserva, boolean pago) {
-      this.id = id;
-      this.dataReserva = dataReserva;
-      this.cliente = cliente;
-      this.carro = carro;
-      this.valorReserva = valorReserva;
-      this.pago = pago;
-    }
-  
-    public int getId() {
-      return id;
-    }
-  
-    public void setId(int id) {
-      this.id = id;
-    }
-  
-    public Date getDataReserva() {
-      return dataReserva;
-    }
-  
-    public void setDataReserva(Date dataReserva) {
-      this.dataReserva = dataReserva;
-    }
-  
-    public Cliente getCliente() {
-      return cliente;
-    }
-  
-    public void setCliente(Cliente cliente) {
-      this.cliente = cliente;
-    }
-  
-    public Carro getCarro() {
-      return carro;
-    }
-  
-    public void setCarro(Carro carro) {
-      this.carro = carro;
-    }
-  
-    public float getValorReserva() {
-      return valorReserva;
-    }
-  
-    public void setValorReserva(float valorReserva) {
-      this.valorReserva = valorReserva;
-    }
-  
-    public boolean isPago() {
-      return pago;
-    }
-  
-    public void setPago(boolean pago) {
-      this.pago = pago;
-    }
-  
+import cin.ufpe.aps.AluCar.proxy.*;
+
+import cin.ufpe.aps.AluCar.models.*;
+
+import java.sql.Date;
+
+public class Reservas implements InterfaceReservas {
+
+    @Override
     public float calculaTaxasAtraso() {
-      //TODO: Implementar lógica de cálculo de taxas de atraso
-      return 0.0f;
+        // Implementação do cálculo de taxas de atraso
+        return 0.0f; // Substitua isso com a lógica real
     }
-  
+
+    @Override
     public void registraPagamento() {
-      //TODO: Implementar lógica para registrar pagamento da reserva
+        // Implementação do registro de pagamento
+        System.out.println("Pagamento registrado.");
     }
-  
+
+    @Override
     public void registraTaxas() {
-      //TODO: Implementar lógica para registrar taxas da reserva
+        // Implementação do registro de taxas
+        System.out.println("Taxas registradas.");
     }
-  
-    public List<Reserva> buscaHistorico() {
-      //TODO: Implementar lógica para buscar histórico de reservas
-      return null;
+
+    @Override
+    public void buscaHistorico(Usuario usuario) {
+
+        // Implementação da busca de histórico
+        String email = usuario.getEmail();
+        System.out.println("Histórico encontrado.");
+
     }
-  
-    public Carro PesquisaCarrosDisponiveis(Date dataInicio, Date dataFim) {
-      //TODO: Implementar lógica para pesquisar carros disponíveis
-      return null;
+
+    @Override
+    public void criaNovaReserva(Float valor, Car carro, Date dataInicio, Date dataTermino, Float taxa, Usuario usuario) {
+
+      Reserva NovaReserva = new Reserva( null , valor, carro, dataInicio, dataTermino, taxa, usuario);
+
+      System.out.println(NovaReserva.);
     }
-  
-    public void criaNovaReserva(Cliente cliente, Carro carro, Date dataInicio, Date dataFim) {
-      //TODO: Implementar lógica para criar uma nova reserva
-    }
+
+    @Override
+    public Car pesquisaCarrosDisponiveis() {
+
+        Carros carros = new Carros();
+
+        Car carro = carros.PesquisaCarrosDisponiveis();
+
+        return carro;
+
   }
-  
+}

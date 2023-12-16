@@ -1,10 +1,11 @@
 import { ReactNode, createContext, useState } from 'react';
 import axios from 'axios';
+import { Car } from '../types';
 
 type AlucarContextType = {
-    imageLink: string;
-    setImageLink: React.Dispatch<React.SetStateAction<string>>;
-    getImageLink: () => Promise<void>;
+    historico: Car[];
+    setHistorico: React.Dispatch<React.SetStateAction<Car[]>>;
+    getHistorico: () => Promise<void>;
 };
 
 interface AlucarProviderProps {
@@ -13,14 +14,16 @@ interface AlucarProviderProps {
 
 export const AlucarContext = createContext({} as AlucarContextType);
 
-export function AlucarContextProvider({ children }: AlucarProviderProps) {
+export function AlucarProvider({ children }: AlucarProviderProps) {
     
-    const [imageLink, setImageLink] = useState<string>('');
+    const [historico, setHistorico] = useState<Car[]>([]);
 
-    const getImageLink = async () => {
-        axios.get('https://localhost:5000/')
+    const getHistorico = async () => {
+        axios.get('http://localhost:8080/historico/visualizarHistorico')
             .then((response) => {
-                setImageLink(response.data[0].url);
+                setHistorico(response.data);
+                console.log(response.data);
+                
             })
             .catch((error) => {
                 console.error(error);
@@ -28,10 +31,10 @@ export function AlucarContextProvider({ children }: AlucarProviderProps) {
     }
 
     return (
-        <AlucarContext.Provider value={{ imageLink, setImageLink, getImageLink }}>
+        <AlucarContext.Provider value={{ historico, setHistorico, getHistorico }}>
             {children}
         </AlucarContext.Provider>
     );
 };
 
-export default AlucarContextProvider;
+export default AlucarProvider;

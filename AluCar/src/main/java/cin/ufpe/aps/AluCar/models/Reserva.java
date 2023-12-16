@@ -1,18 +1,21 @@
 package cin.ufpe.aps.AluCar.models;
 
+import java.sql.Date;
+
 public class Reserva {
 
     // Atributos da Reserva
+    private Integer id;
     private Float valor;
     private Car carro;
-    private Integer dataInicio;
-    private Integer dataTermino;
+    private Date dataInicio;
+    private Date dataTermino;
     private Float taxa;
     private Usuario usuario;
 
     // Construtor com todos os atributos
-    public Reserva(Float valor, Car carro, Integer dataInicio,
-                   Integer dataTermino, Float taxa, Usuario usuario) {
+    public Reserva(Integer id, Float valor, Car carro, Date dataInicio, Date dataTermino, Float taxa, Usuario usuario) {
+        this.id = id;
         this.valor = valor;
         this.carro = carro;
         this.dataInicio = dataInicio;
@@ -22,6 +25,15 @@ public class Reserva {
     }
 
     // Métodos Getter e Setter intercalados
+
+    public Integer getID() {
+        return this.id;
+    }
+
+    public void setID(Integer id) {
+        this.id = id;
+    }
+
     public Float getValor() {
         return this.valor;
     }
@@ -38,19 +50,19 @@ public class Reserva {
         this.carro = carro;
     }
 
-    public Integer getDataInicio() {
+    public Date getDataInicio() {
         return this.dataInicio;
     }
 
-    public void setDataInicio(Integer dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
-    public Integer getDataTermino() {
+    public Date getDataTermino() {
         return this.dataTermino;
     }
 
-    public void setDataTermino(Integer dataTermino) {
+    public void setDataTermino(Date dataTermino) {
         this.dataTermino = dataTermino;
     }
 

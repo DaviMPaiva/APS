@@ -12,8 +12,7 @@ public class Car {
     private String link_fotos;
 
     // Construtor com todos os atributos
-    public Car(String modelo, String placa, Float preco, Integer ano,
-                  String combustivel, String transmissao, String link_fotos) {
+    public Car(String modelo, String placa, Float preco, Integer ano, String combustivel, String transmissao, String link_fotos) {
         this.modelo = modelo;
         this.placa = placa;
         this.preco = preco;

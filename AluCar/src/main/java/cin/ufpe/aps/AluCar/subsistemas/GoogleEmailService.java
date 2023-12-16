@@ -3,7 +3,7 @@ package cin.ufpe.aps.AluCar.subsistemas;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 
 import java.util.Properties;
@@ -11,8 +11,9 @@ import java.util.Properties;
 @Service
 public class GoogleEmailService implements EmailService {
 
-    private final String remetente = "emailparatestapi@gmail.com"; // Substitua pelo seu e-mail do Gmail
-    private final String senha = "Ronaldo09"; // Substitua pela senha do seu e-mail do Gmail
+    private final Dotenv dotenv = Dotenv.configure().filename("/AluCar/.env").load();
+    private final String remetente = dotenv.get("REMETENTE"); // Substitua pelo seu e-mail do Gmail
+    private final String senha = dotenv.get("SENHA"); // Substitua pela senha do seu e-mail do Gmail
 
     private final String assunto = "[AluCar] - Reserva de Veículo";
     private final String corpo = "Você realizou uma reserva com sucesso";
