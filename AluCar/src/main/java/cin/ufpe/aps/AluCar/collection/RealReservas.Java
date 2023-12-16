@@ -1,4 +1,4 @@
-public class RealReservas implements Reservas{
+public class Reservas implements InterfaceReservas{
 
     private int id;
     private Date dataReserva;

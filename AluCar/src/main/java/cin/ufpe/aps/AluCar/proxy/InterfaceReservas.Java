@@ -1,0 +1,3 @@
+interface InterfaceReservas {
+    String executeQuery();
+}

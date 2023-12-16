@@ -2,8 +2,12 @@ package cin.ufpe.aps.AluCar.collection;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
+
 import cin.ufpe.aps.AluCar.models.Car;
 
+@Component
 public class Locadoras {
 
     private List<Car> cars;
