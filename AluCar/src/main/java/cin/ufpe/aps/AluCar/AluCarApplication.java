@@ -3,7 +3,7 @@ package cin.ufpe.aps.AluCar;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSQl;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
 
 @SpringBootApplication
 public class AluCarApplication {

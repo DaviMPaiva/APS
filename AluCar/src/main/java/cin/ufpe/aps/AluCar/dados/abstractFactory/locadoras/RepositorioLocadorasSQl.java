@@ -5,11 +5,11 @@ package cin.ufpe.aps.AluCar.dados.abstractFactory.locadoras;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
 import cin.ufpe.aps.AluCar.models.Locadora;
 
-public class RepositorioLocadorasSQl implements IRepositorioLocadoras{
+public class RepositorioLocadorasSql implements IRepositorioLocadoras{
     
     private DatabaseDAO databaseDAO;
 
-    public RepositorioLocadorasSQl (DatabaseDAO databaseDAO) {
+    public RepositorioLocadorasSql (DatabaseDAO databaseDAO) {
         this.databaseDAO = databaseDAO;
     }
 

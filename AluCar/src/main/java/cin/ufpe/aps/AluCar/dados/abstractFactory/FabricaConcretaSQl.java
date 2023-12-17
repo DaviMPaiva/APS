@@ -1,24 +1,24 @@
 
 package cin.ufpe.aps.AluCar.dados.abstractFactory;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.*;
+
 import cin.ufpe.aps.AluCar.dados.abstractFactory.carros.RepositorioCarrosSql;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.locadoras.RepositorioLocadorasSQl;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.RepositorioReservasSQl;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.locadoras.RepositorioLocadorasSql;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.RepositorioReservasSql;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.usuarios.RepositorioUsuarioSql;
 
 
-public class FabricaConcretaSQl implements FabricaAbstrataRepositorio {
+public class FabricaConcretaSql implements FabricaAbstrataRepositorio {
     DatabaseDAO databaseDAO = new DatabaseDAO();
 
     @Override
-    public RepositorioReservasSQl CriaRepoReservas() {
-        RepositorioReservasSQl rrsql = new RepositorioReservasSQl(databaseDAO);
+    public RepositorioReservasSql CriaRepoReservas() {
+        RepositorioReservasSql rrsql = new RepositorioReservasSql(databaseDAO);
         return rrsql;
     }
 
     @Override
-    public RepositorioLocadorasSQl CriarRepoLocadoras() {
-        RepositorioLocadorasSQl locadorasSql = new RepositorioLocadorasSQl(databaseDAO);
+    public RepositorioLocadorasSql CriarRepoLocadoras() {
+        RepositorioLocadorasSql locadorasSql = new RepositorioLocadorasSql(databaseDAO);
         return locadorasSql;
     }
 

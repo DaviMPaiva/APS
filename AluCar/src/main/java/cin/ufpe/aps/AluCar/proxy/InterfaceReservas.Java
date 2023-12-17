@@ -3,6 +3,7 @@ package cin.ufpe.aps.AluCar.proxy;
 import cin.ufpe.aps.AluCar.models.*;
 
 import java.sql.Date;
+import java.util.List;
 
 public interface InterfaceReservas {
 

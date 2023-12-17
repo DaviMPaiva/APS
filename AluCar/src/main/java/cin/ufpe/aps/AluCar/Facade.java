@@ -1,16 +1,17 @@
 package cin.ufpe.aps.AluCar;
 
-import cin.ufpe.aps.AluCar.collection.Carros;
+import cin.ufpe.aps.AluCar.collection.*;
 import cin.ufpe.aps.AluCar.collection.Locadoras;
 import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.collection.Usuarios;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSQl;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import cin.ufpe.aps.AluCar.models.Car;
+import cin.ufpe.aps.AluCar.models.Reserva;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public class Facade {
     private ControleHistorico controleHistorico;
 
     public Facade(){
-        FabricaConcretaSQl fabrica = new FabricaConcretaSQl();
+        FabricaConcretaSql fabrica = new FabricaConcretaSql();
 
         Carros carros = new Carros(fabrica.CriaRepoCarros());
         Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
@@ -55,7 +56,7 @@ public class Facade {
         return ResponseEntity.ok("Locadora modificada com sucesso!");
     }
 
-    public ResponseEntity<List<Car>> visualizarHistorico() {
+    public ResponseEntity<List<Reserva>> visualizarHistorico() {
         return ResponseEntity.ok(controleHistorico.obterHistorico());
     }
 }

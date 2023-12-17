@@ -11,8 +11,8 @@ public class ControleHistorico {
 
 
     public List<Reserva> obterHistorico() {
-        Reservas reservas = new Reservas();
-        return reservas.buscaHistorico(null);;
+        Reservas reservas = new Reservas(null); // qual é a ideia desse parâmetro 
+        return reservas.buscaHistorico(null);
     }
 
 }

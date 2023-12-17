@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import cin.ufpe.aps.AluCar.Facade;
-import cin.ufpe.aps.AluCar.models.Car;
+import cin.ufpe.aps.AluCar.models.Reserva;
 
 @RequestMapping("/historico")
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "http://localhost:5174")
 public class TelaHistoricoControllerMVC {
 
     @Autowired
     private Facade facade;
 
     @GetMapping("/visualizarHistorico")
-    public ResponseEntity<List<Car>> visualizarHistorico() {
+    public ResponseEntity<List<Reserva>> visualizarHistorico() {
         return facade.visualizarHistorico();
     }
 }
