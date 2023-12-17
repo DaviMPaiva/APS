@@ -5,6 +5,7 @@ import cin.ufpe.aps.AluCar.collection.Locadoras;
 import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.collection.Usuarios;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaH2;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
 import java.sql.SQLException;
@@ -27,7 +28,8 @@ public class Facade {
     private ControleHistorico controleHistorico;
 
     public Facade(){
-        FabricaConcretaSql fabrica = new FabricaConcretaSql();
+      
+        FabricaConcretaSql fabricaPost = new FabricaConcretaSql();
         DatabaseDAO database = new DatabaseDAO();
         System.out.println("criou DAO");
 
@@ -35,13 +37,16 @@ public class Facade {
             database.insertData();
         } catch (SQLException e) {
             System.out.println(e);
-        }
-        
+        }  
+
+        FabricaConcretaH2 fabrica = new FabricaConcretaH2();
 
         Carros carros = new Carros(fabrica.CriaRepoCarros());
-        Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
-        Locadoras locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
-        Usuarios usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
+        Car carro = carros.PesquisaCarrosDisponiveis();
+
+        //Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
+        //Locadoras locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
+        //Usuarios usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
 
         this.controleHistorico = new ControleHistorico();
 
