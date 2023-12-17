@@ -7,12 +7,16 @@ import cin.ufpe.aps.AluCar.collection.Usuarios;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaH2;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import cin.ufpe.aps.AluCar.models.Car;
 import cin.ufpe.aps.AluCar.models.Reserva;
+
+
 
 import java.util.List;
 
@@ -24,8 +28,19 @@ public class Facade {
     private ControleHistorico controleHistorico;
 
     public Facade(){
+      
+        FabricaConcretaSql fabricaPost = new FabricaConcretaSql();
+        DatabaseDAO database = new DatabaseDAO();
+        System.out.println("criou DAO");
+
+        try {
+            database.insertData();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }  
+
         FabricaConcretaH2 fabrica = new FabricaConcretaH2();
-        
+
         Carros carros = new Carros(fabrica.CriaRepoCarros());
         Car carro = carros.PesquisaCarrosDisponiveis();
 
