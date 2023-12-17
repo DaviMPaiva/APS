@@ -1,18 +1,16 @@
 
-package cin.ufpe.aps.AluCar.dados.abstractFactory.repos;
+package cin.ufpe.aps.AluCar.dados.abstractFactory.locadoras;
 
-import java.sql.Connection;
 
-import cin.ufpe.aps.AluCar.dados.abstractFactory.IRepositorio;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
 import cin.ufpe.aps.AluCar.models.Locadora;
 
-class RepositorioLocadorasSQl implements IRepositorio{
+public class RepositorioLocadorasSQl implements IRepositorioLocadoras{
     
-    private Connection sqlConnection;
+    private DatabaseDAO databaseDAO;
 
-    // Constructor that takes a SQL database connection
-    public RepositorioLocadorasSQl (Connection sqlConnection) {
-        this.sqlConnection = sqlConnection;
+    public RepositorioLocadorasSQl (DatabaseDAO databaseDAO) {
+        this.databaseDAO = databaseDAO;
     }
 
     @Override
