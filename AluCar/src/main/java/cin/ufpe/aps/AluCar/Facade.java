@@ -5,6 +5,7 @@ import cin.ufpe.aps.AluCar.collection.Locadoras;
 import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.collection.Usuarios;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaH2;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,14 @@ public class Facade {
     private ControleHistorico controleHistorico;
 
     public Facade(){
-        FabricaConcretaSql fabrica = new FabricaConcretaSql();
-
+        FabricaConcretaH2 fabrica = new FabricaConcretaH2();
+        
         Carros carros = new Carros(fabrica.CriaRepoCarros());
-        Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
-        Locadoras locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
-        Usuarios usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
+        Car carro = carros.PesquisaCarrosDisponiveis();
+
+        //Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
+        //Locadoras locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
+        //Usuarios usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
 
         this.controleHistorico = new ControleHistorico();
 
