@@ -1,7 +1,12 @@
 package cin.ufpe.aps.AluCar;
 
+import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.collection.Locadoras;
+import cin.ufpe.aps.AluCar.collection.Reservas;
+import cin.ufpe.aps.AluCar.collection.Usuarios;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSQl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -19,7 +24,18 @@ public class Facade {
     private ControleHistorico controleHistorico;
 
     public Facade(){
+        FabricaConcretaSQl fabrica = new FabricaConcretaSQl();
+
+        Carros carros = new Carros(fabrica.CriaRepoCarros());
+        Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
+        Locadoras locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
+        Usuarios usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
+
+
+
         this.controleHistorico = new ControleHistorico();
+
+
     }
 
 

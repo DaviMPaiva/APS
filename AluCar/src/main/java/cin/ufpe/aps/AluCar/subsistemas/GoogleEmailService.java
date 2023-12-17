@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Properties;
 
+/* 
+
 @Service
 public class GoogleEmailService implements EmailService {
 
@@ -51,3 +53,5 @@ public class GoogleEmailService implements EmailService {
         }
     }
 }
+
+*/

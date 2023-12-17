@@ -16,7 +16,7 @@ public interface InterfaceReservas {
     void registraTaxas();
 
     // Busca histórico
-    void buscaHistorico(Usuario usuario);
+    List<Reserva> buscaHistorico(Usuario usuario);
 
     // Cria nova reserva
     void criaNovaReserva(Float valor, Car carro, Date dataInicio, Date dataTermino, Float taxa, Usuario usuario);

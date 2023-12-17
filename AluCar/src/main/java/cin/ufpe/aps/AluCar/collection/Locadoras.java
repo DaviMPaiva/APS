@@ -5,12 +5,18 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import cin.ufpe.aps.AluCar.dados.abstractFactory.locadoras.IRepositorioLocadoras;
+import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.Car;
 
 @Component
 public class Locadoras {
 
     private List<Car> cars;
+    private IRepositorioLocadoras repoLocadoras;
+    public Locadoras(IRepositorioLocadoras repoLocadoras){
+        this.repoLocadoras = repoLocadoras;
+    }
 
     public Locadoras() {
         this.cars = new ArrayList<>();

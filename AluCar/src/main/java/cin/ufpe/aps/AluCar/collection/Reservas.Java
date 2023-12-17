@@ -1,56 +1,58 @@
 package cin.ufpe.aps.AluCar.collection;
 
 import cin.ufpe.aps.AluCar.proxy.*;
-
+import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.*;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Reservas implements InterfaceReservas {
+
+    private IRepositorioReservas repoReserva;
+    public Reservas(IRepositorioReservas repoReserva){
+        this.repoReserva = repoReserva;
+    }
 
     @Override
     public float calculaTaxasAtraso() {
         // Implementação do cálculo de taxas de atraso
-        return 0.0f; // Substitua isso com a lógica real
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+
     }
 
     @Override
     public void registraPagamento() {
         // Implementação do registro de pagamento
-        System.out.println("Pagamento registrado.");
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+
     }
 
     @Override
     public void registraTaxas() {
         // Implementação do registro de taxas
-        System.out.println("Taxas registradas.");
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+
     }
 
     @Override
-    public void buscaHistorico(Usuario usuario) {
-
-        // Implementação da busca de histórico
-        String email = usuario.getEmail();
-        System.out.println(email);
+    public List<Reserva> buscaHistorico(Usuario usuario) {
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
 
     }
 
     @Override
     public void criaNovaReserva(Float valor, Car carro, Date dataInicio, Date dataTermino, Float taxa, Usuario usuario) {
 
-      Reserva NovaReserva = new Reserva( null , valor, carro, dataInicio, dataTermino, taxa, usuario);
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
 
-      System.out.println(NovaReserva.getValor());
     }
 
     @Override
     public Car pesquisaCarrosDisponiveis() {
 
-        Carros carros = new Carros();
+                throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
 
-        Car carro = carros.PesquisaCarrosDisponiveis();
-
-        return carro;
 
   }
 }
