@@ -1,3 +1,10 @@
+/*package cin.ufpe.aps.AluCar.Iterator;
+
+import java.util.Iterator;
+import java.util.List;
+
+import cin.ufpe.aps.AluCar.models.Car;
+
 public class ConcreteAggregate implements Aggregate {
 
     private List<Car> cars;
@@ -14,4 +21,4 @@ public class ConcreteAggregate implements Aggregate {
     public List<Car> getItems() {
         return cars;
     }
-}
+}*/

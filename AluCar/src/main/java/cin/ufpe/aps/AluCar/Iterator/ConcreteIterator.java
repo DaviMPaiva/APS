@@ -1,3 +1,8 @@
+/*package cin.ufpe.aps.AluCar.Iterator;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ConcreteIterator implements Iterator {
 
     private ConcreteAggregate aggregate;
@@ -19,4 +24,4 @@ public class ConcreteIterator implements Iterator {
         }
         return aggregate.getItems().get(currentItem++);
     }
-}
+}*/

@@ -1,3 +1,11 @@
+/*package cin.ufpe.aps.AluCar.Iterator;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import cin.ufpe.aps.AluCar.models.Car;
+
 // Iterable collection: CarCollection
 class CarCollection implements Iterable<Car> {
     private List<Car> cars;
@@ -37,4 +45,4 @@ public class CarCollection implements Iterator {
         }
         return aggregate.getItems().get(currentIndex++);
     }
-}
+}*/
