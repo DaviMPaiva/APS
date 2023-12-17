@@ -10,9 +10,10 @@ public class Car {
     private String combustivel;
     private String transmissao;
     private String link_fotos;
+    private Integer locadora;
 
     // Construtor com todos os atributos
-    public Car(String modelo, String placa, Float preco, Integer ano, String combustivel, String transmissao, String link_fotos) {
+    public Car(String modelo, String placa, Float preco, Integer ano, String combustivel, String transmissao, String link_fotos, Integer locadora) {
         this.modelo = modelo;
         this.placa = placa;
         this.preco = preco;
@@ -20,6 +21,7 @@ public class Car {
         this.combustivel = combustivel;
         this.transmissao = transmissao;
         this.link_fotos = link_fotos;
+        this.locadora = locadora;
     }
 
     // Métodos Getter e Setter com encadeamento
@@ -77,5 +79,13 @@ public class Car {
 
     public void setLinkFotos(String link_fotos) {
         this.link_fotos = link_fotos;
+    }
+
+    public Integer getLocadora() {
+        return this.locadora;
+    }
+
+    public void setLocadora(Integer locadora) {
+        this.locadora = locadora;
     }
 }

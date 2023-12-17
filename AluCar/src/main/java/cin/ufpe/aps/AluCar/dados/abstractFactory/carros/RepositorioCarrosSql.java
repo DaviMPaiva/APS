@@ -1,5 +1,8 @@
 package cin.ufpe.aps.AluCar.dados.abstractFactory.carros;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
 import cin.ufpe.aps.AluCar.models.Car;
 
@@ -12,8 +15,31 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
     }
     @Override
     public Car getCarro() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCarro'");
+        Car car = null;
+    
+        
+        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"car\" WHERE placa = 'ABC123'")) {
+    
+            // Check if the result set has a row
+            if (result.next()) {
+                // Retrieve values from the result set
+                String modelo = result.getString("modelo");
+                String placa = result.getString("placa");
+                Float preco = result.getFloat("preco");
+                int ano = result.getInt("ano");
+                String combustivel = result.getString("combustivel");
+                String transmissao = result.getString("transmissao");
+                String linkFotos = result.getString("linkFotos");
+                Integer locadora = result.getInt("locadora");
+    
+                // Create a Car object using the retrieved values
+                car = new Car(modelo, placa, preco, ano, combustivel, transmissao, linkFotos, locadora);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return car;
     }
 
     @Override

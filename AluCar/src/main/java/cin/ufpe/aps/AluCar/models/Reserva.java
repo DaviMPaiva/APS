@@ -5,17 +5,15 @@ import java.sql.Date;
 public class Reserva {
 
     // Atributos da Reserva
-    private Integer id;
     private Float valor;
-    private Car carro;
+    private String carro;
     private Date dataInicio;
     private Date dataTermino;
     private Float taxa;
-    private Usuario usuario;
+    private String usuario;
 
     // Construtor com todos os atributos
-    public Reserva(Integer id, Float valor, Car carro, Date dataInicio, Date dataTermino, Float taxa, Usuario usuario) {
-        this.id = id;
+    public Reserva(Float valor, String carro, Date dataInicio, Date dataTermino, Float taxa, String usuario) {
         this.valor = valor;
         this.carro = carro;
         this.dataInicio = dataInicio;
@@ -26,14 +24,6 @@ public class Reserva {
 
     // Métodos Getter e Setter intercalados
 
-    public Integer getID() {
-        return this.id;
-    }
-
-    public void setID(Integer id) {
-        this.id = id;
-    }
-
     public Float getValor() {
         return this.valor;
     }
@@ -42,11 +32,11 @@ public class Reserva {
         this.valor = valor;
     }
 
-    public Car getCarro() {
+    public String getCarro() {
         return this.carro;
     }
 
-    public void setCarro(Car carro) {
+    public void setCarro(String carro) {
         this.carro = carro;
     }
 
@@ -74,11 +64,11 @@ public class Reserva {
         this.taxa = taxa;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return this.usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 }

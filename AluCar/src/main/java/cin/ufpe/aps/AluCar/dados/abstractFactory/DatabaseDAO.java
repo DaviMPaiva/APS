@@ -21,18 +21,18 @@ public class DatabaseDAO {
 
     // Execute a SELECT query
     public ResultSet executeQuery(String sql) throws SQLException {
-        try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            return statement.executeQuery();
-        }
+        Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        return statement.executeQuery();
+        
     }
 
     // Execute an INSERT, UPDATE, or DELETE query
     public int executeUpdate(String sql) throws SQLException {
-        try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            return statement.executeUpdate();
-        }
+        Connection connection = getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        return statement.executeUpdate();
+        
     }
 
     public void insertCartaoData(String cvc, String nome, String numero, String dataValidade) {

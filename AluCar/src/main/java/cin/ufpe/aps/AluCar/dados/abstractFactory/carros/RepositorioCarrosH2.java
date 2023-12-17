@@ -30,9 +30,10 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
                 String combustivel = result.getString("combustivel");
                 String transmissao = result.getString("transmissao");
                 String linkFotos = result.getString("linkFotos");
+                Integer locadora = result.getInt("locadora");
     
                 // Create a Car object using the retrieved values
-                car = new Car(modelo, placa, preco, ano, combustivel, transmissao, linkFotos);
+                car = new Car(modelo, placa, preco, ano, combustivel, transmissao, linkFotos, locadora);
             }
         } catch (SQLException e) {
             e.printStackTrace();

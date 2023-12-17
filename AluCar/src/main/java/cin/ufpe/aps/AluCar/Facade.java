@@ -1,9 +1,6 @@
 package cin.ufpe.aps.AluCar;
 
 import cin.ufpe.aps.AluCar.collection.*;
-import cin.ufpe.aps.AluCar.collection.Locadoras;
-import cin.ufpe.aps.AluCar.collection.Reservas;
-import cin.ufpe.aps.AluCar.collection.Usuarios;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaH2;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
@@ -29,20 +26,13 @@ public class Facade {
 
     public Facade(){
       
-        FabricaConcretaSql fabricaPost = new FabricaConcretaSql();
-        DatabaseDAO database = new DatabaseDAO();
-        System.out.println("criou DAO");
-
-        try {
-            database.insertData();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }  
-
-        FabricaConcretaH2 fabrica = new FabricaConcretaH2();
+        FabricaConcretaSql fabrica = new FabricaConcretaSql(); 
+        //FabricaConcretaH2 fabrica = new FabricaConcretaH2();
 
         Carros carros = new Carros(fabrica.CriaRepoCarros());
         Car carro = carros.PesquisaCarrosDisponiveis();
+        System.out.println(carro);
+        
 
         //Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
         //Locadoras locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
