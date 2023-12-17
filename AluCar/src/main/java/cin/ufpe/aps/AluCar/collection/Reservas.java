@@ -38,7 +38,7 @@ public class Reservas implements InterfaceReservas {
 
     @Override
     public List<Reserva> buscaHistorico(Usuario usuario) {
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+        return repoReserva.getReserva(usuario.getEmail());
 
     }
 

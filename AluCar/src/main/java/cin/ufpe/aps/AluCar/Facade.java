@@ -12,8 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import cin.ufpe.aps.AluCar.models.Car;
 import cin.ufpe.aps.AluCar.models.Reserva;
-
-
+import cin.ufpe.aps.AluCar.models.Usuario;
 
 import java.util.List;
 
@@ -23,6 +22,8 @@ public class Facade {
     @Autowired
     private Locadoras locadoras;
     private ControleHistorico controleHistorico;
+    private Reservas reservas;
+    private Usuario usuario;
 
     public Facade(){
       
@@ -40,7 +41,9 @@ public class Facade {
 
         this.controleHistorico = new ControleHistorico();
 
-
+        this.reservas = new Reservas(fabrica.CriaRepoReservas()); 
+        this.usuario = new Usuario("joao@email.com", "João da Silva", "joao@email.com", 1);
+        visualizarHistorico();
     }
 
 
@@ -61,6 +64,13 @@ public class Facade {
     }
 
     public ResponseEntity<List<Reserva>> visualizarHistorico() {
-        return ResponseEntity.ok(controleHistorico.obterHistorico());
+        List<Reserva> x = controleHistorico.obterHistorico(reservas, usuario);
+        System.out.println(x);
+        for (int i = 0; i < 20; i++){
+             System.out.println("Carvalheira na Ladeira");
+        }
+       
+        return ResponseEntity.ok(x);
+        
     }
 }

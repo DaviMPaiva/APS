@@ -4,13 +4,13 @@ import java.util.List;
 
 import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.models.Reserva;
+import cin.ufpe.aps.AluCar.models.Usuario;
 
 public class ControleHistorico {
 
 
-    public List<Reserva> obterHistorico() {
-        Reservas reservas = new Reservas(null); // qual é a ideia desse parâmetro 
-        return reservas.buscaHistorico(null);
+    public List<Reserva> obterHistorico(Reservas reservas, Usuario usuario) {
+        return reservas.buscaHistorico(usuario);
     }
 
 }

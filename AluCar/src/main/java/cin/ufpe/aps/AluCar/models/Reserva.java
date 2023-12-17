@@ -9,11 +9,11 @@ public class Reserva {
     private String carro;
     private Date dataInicio;
     private Date dataTermino;
-    private Float taxa;
+    private Integer taxa;
     private String usuario;
 
     // Construtor com todos os atributos
-    public Reserva(Float valor, String carro, Date dataInicio, Date dataTermino, Float taxa, String usuario) {
+    public Reserva(Float valor, String carro, Date dataInicio, Date dataTermino, Integer taxa, String usuario) {
         this.valor = valor;
         this.carro = carro;
         this.dataInicio = dataInicio;
@@ -56,11 +56,11 @@ public class Reserva {
         this.dataTermino = dataTermino;
     }
 
-    public Float getTaxa() {
+    public Integer getTaxa() {
         return this.taxa;
     }
 
-    public void setTaxa(Float taxa) {
+    public void setTaxa(Integer taxa) {
         this.taxa = taxa;
     }
 
