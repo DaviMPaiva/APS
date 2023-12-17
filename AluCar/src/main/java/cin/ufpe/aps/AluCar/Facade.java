@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 import cin.ufpe.aps.AluCar.models.Car;
 import cin.ufpe.aps.AluCar.models.Reserva;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -31,8 +29,6 @@ public class Facade {
         Reservas reservas = new Reservas(fabrica.CriaRepoReservas());
         Locadoras locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
         Usuarios usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
-
-
 
         this.controleHistorico = new ControleHistorico();
 
