@@ -90,8 +90,8 @@ public class RepositorioReservasSql implements IRepositorioReservas{
         Reserva reservaBuffer = null;
 
         String sql = "SELECT * FROM \"reserva\" WHERE (datainicio < '" + reserva.getDataInicio() + "' AND datatermino > '" + reserva.getDataTermino() + "') " +
-             "OR (datainicio < '" + reserva.getDataInicio() + "' AND datatermino > '" + reserva.getDataInicio() + "') " +
-             "OR (datainicio < '" + reserva.getDataTermino() + "' AND datatermino > '" + reserva.getDataTermino() + "')";
+             "OR (datainicio > '" + reserva.getDataInicio() + "' AND datainicio < '" + reserva.getDataTermino() + "') " +
+             "OR (datatermino > '" + reserva.getDataInicio() + "' AND datatermino < '" + reserva.getDataTermino() + "')";
 
         
         try (ResultSet result = this.databaseDAO.executeQuery(sql)) {
@@ -142,7 +142,7 @@ public class RepositorioReservasSql implements IRepositorioReservas{
         List<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reservaBuffer = null;
 
-        String sql = "SELECT * \"FROM Reserva\" WHERE (dataInicio BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
+        String sql = "SELECT * FROM \"reserva\" WHERE (dataInicio BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
                 "OR (dataTermino BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
                 "OR (dataInicio <= '" + dataAtual + "' AND dataTermino >= '" + dataProximoMes + "');";
              

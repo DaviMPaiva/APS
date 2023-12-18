@@ -6,6 +6,7 @@ import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
+import cin.ufpe.aps.AluCar.proxy.InterfaceReservas;
 import cin.ufpe.aps.AluCar.models.Car;
 
 public class ControlePesquisa {
@@ -15,7 +16,7 @@ public class ControlePesquisa {
         return carros.PesquisaCarrosModelo(modelo);
     }
 
-    public List<Car> pesquisaCarrosDisponiveis(Reservas reservas, Reserva reserva, Carros cars) {
+    public List<Car> pesquisaCarrosDisponiveis(InterfaceReservas reservas, Reserva reserva, Carros cars) {
         return reservas.pesquisaCarrosDisponiveis(reserva, cars);
     }
 

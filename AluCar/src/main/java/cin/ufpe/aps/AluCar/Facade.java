@@ -32,6 +32,7 @@ public class Facade {
     private ControlePesquisa controlePesquisa;
     private Carros carros;
     private Reservas reservas;
+    private ProxyReservaCarrosDisponiveis proxy;
     // private Usuario usuario;
     private Usuario usuarioH;
     private Usuario usuarioE;
@@ -51,6 +52,7 @@ public class Facade {
 
         this.carros = new Carros(fabrica.CriaRepoCarros());
         this.reservas = new Reservas(fabrica.CriaRepoReservas());
+        this.proxy = new ProxyReservaCarrosDisponiveis(fabrica.CriaRepoReservas(), reservas);
         this.locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
         this.usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
 
@@ -129,7 +131,7 @@ public class Facade {
         Date dataFinal = Date.valueOf(dataTermino);
         reservaProposta = new Reserva(null, null, dataInicial, dataFinal, null, null);
 
-        List<Car> x = this.controlePesquisa.pesquisaCarrosDisponiveis(reservas, reservaProposta, carros);
+        List<Car> x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros);
         return ResponseEntity.ok(x);
     }
 }
