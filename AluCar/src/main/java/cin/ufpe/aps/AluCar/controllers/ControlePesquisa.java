@@ -1,8 +1,10 @@
 package cin.ufpe.aps.AluCar.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cin.ufpe.aps.AluCar.collection.Reservas;
+import cin.ufpe.aps.AluCar.Iterator.CarIterator;
 import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.models.Reserva;
@@ -17,8 +19,16 @@ public class ControlePesquisa {
         return carros.PesquisaCarrosModelo(modelo);
     }
 
-    public CarList pesquisaCarrosDisponiveis(InterfaceReservas reservas, Reserva reserva, Carros cars) {
-        return reservas.pesquisaCarrosDisponiveis(reserva, cars);
+    public List<Car> pesquisaCarrosDisponiveis(InterfaceReservas reservas, Reserva reserva, Carros cars, Usuario usuario) {
+        List<Car> carReturnList = new ArrayList<>();
+        CarList carList = reservas.pesquisaCarrosDisponiveis(reserva, cars);
+        CarIterator carIterator = carList.createIterator(usuario);
+        while (carIterator.hasNext()) {
+            Car car = carIterator.next();
+            // Process the car (e.g., print details)
+            carReturnList.add(car);
+        }
+        return carReturnList;
     }
 
 }

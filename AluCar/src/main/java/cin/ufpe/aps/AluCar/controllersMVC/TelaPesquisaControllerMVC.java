@@ -29,7 +29,7 @@ public class TelaPesquisaControllerMVC {
     }
 
     @GetMapping("/pesquisaCarrosDisponiveis/{dataInicio}/{dataTermino}")
-    public ResponseEntity<CarList> pesquisaCarrosDisponiveis(@PathVariable String dataInicio, @PathVariable String dataTermino) {
+    public ResponseEntity<List<Car>> pesquisaCarrosDisponiveis(@PathVariable String dataInicio, @PathVariable String dataTermino) {
         return facade.pesquisaCarrosDisponiveis(dataInicio, dataTermino);
     }
 }

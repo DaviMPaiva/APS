@@ -125,14 +125,14 @@ public class Facade {
         return ResponseEntity.ok(x);
     }
 
-    public ResponseEntity<CarList> pesquisaCarrosDisponiveis(String dataInicio, String dataTermino) {
+    public ResponseEntity<List<Car>> pesquisaCarrosDisponiveis(String dataInicio, String dataTermino) {
         
         //cria a class o mais cedo possivel
         Date dataInicial = Date.valueOf(dataInicio);
         Date dataFinal = Date.valueOf(dataTermino);
         reservaProposta = new Reserva(null, null, dataInicial, dataFinal, null, null);
 
-        CarList x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros);
+        List<Car> x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros, this.usuarioH);
         return ResponseEntity.ok(x);
     }
 }
