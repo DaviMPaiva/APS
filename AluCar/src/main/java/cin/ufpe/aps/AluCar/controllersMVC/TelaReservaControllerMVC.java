@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import cin.ufpe.aps.AluCar.subsistemas.GoogleEmailService;
 import cin.ufpe.aps.AluCar.Facade;
+import cin.ufpe.aps.AluCar.models.Cartao;
+import cin.ufpe.aps.AluCar.models.Reserva;
 
 
 @RestController
@@ -31,14 +33,8 @@ public class TelaReservaControllerMVC {
         }
     }*/
 
-    
-    @GetMapping("/validaReserva")
-    public ResponseEntity<Boolean> validaReserva() {
-        return facade.validaReserva();
-    }
-
-    @GetMapping("/solicitaPagamento")
-    public ResponseEntity<Boolean> validaReserva() {
-        return facade.validaReserva();
+    @PostMapping("/solicitaPagamento")
+    public ResponseEntity<Boolean> solicitaPagamento(@RequestBody Reserva reserva, Cartao cartao) {
+        return facade.solicitaPagamento(reserva, cartao);
     }
 }

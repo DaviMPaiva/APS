@@ -55,7 +55,7 @@ public class RepositorioReservasSql implements IRepositorioReservas{
         List<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reservaBuffer = null;
         
-        String sql = "SELECT * FROM \"eserva\" WHERE placa = '" + reserva.getCarro() + 
+        String sql = "SELECT * FROM \"reserva\" WHERE placa = '" + reserva.getCarro() + 
                                 "' AND dataInicio < '" + reserva.getDataInicio() +
                                 "' AND dataTermino > '"+ reserva.getDataTermino() +"'";
         
@@ -86,13 +86,15 @@ public class RepositorioReservasSql implements IRepositorioReservas{
 
     @Override
     public void setReserva(Reserva reserva) {
-        String sql = "INSERT INTO Reserva (placa, valor, taxa, dataInicio, dataTermino, usuario) VALUES (" + 
-             reserva.getCarro()       +","+
-             reserva.getValor()       +","+ 
-             reserva.getTaxa()        +","+
-             reserva.getDataInicio()  +","+
-             reserva.getDataTermino() +","+
-             reserva.getUsuario()     +");";
+        String sql = "INSERT INTO \"reserva\" (placa, valor, taxa, dataInicio, dataTermino, usuario) VALUES (" + 
+            "'" + reserva.getCarro() + "'"       +","+
+            reserva.getValor()       +","+ 
+            reserva.getTaxa()        +","+
+            "'" + reserva.getDataInicio() + "'"  +","+
+            "'" + reserva.getDataTermino() + "'" +","+
+            "'" + reserva.getUsuario() + "'"     +");";
+
+        System.out.println(sql);
 
         try (ResultSet result = this.databaseDAO.executeQuery(sql)) {
             System.out.println("nice");
