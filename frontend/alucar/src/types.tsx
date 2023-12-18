@@ -11,8 +11,8 @@ export interface Car {
 export interface Reserva {
     valor: number;
     carro: string;
-    dataInicio: Date;
-    dataTermino: Date;
+    dataInicio: string;
+    dataTermino: string;
     taxa: number;
     usuario: string;
 }
@@ -26,7 +26,7 @@ export interface Usuario {
 
 export interface Cartao {
     numero: string;
-    nome: string;
+    titular: string;
     dataValidade: string;
     cvc: string;
 }

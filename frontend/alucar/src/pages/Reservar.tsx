@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Reservar() {
 
-    const [dataInicio, setDataInicio] = useState<Date>();
-    const [dataTermino, setDataTermino] = useState<Date>();
+    const [dataInicio, setDataInicio] = useState<string>();
+    const [dataTermino, setDataTermino] = useState<string>();
     const [numeroCartao, setNumeroCartao] = useState<string>();
     const [nomeCartao, setNomeCartao] = useState<string>();
     const [cvcCartao, setCvcCartao] = useState<string>();
@@ -15,8 +15,8 @@ export default function Reservar() {
     const { reservarCarro } = useContext(AlucarContext);
     const navigate = useNavigate();
 
-    const criarReserva = () => {
-
+    const criarReserva = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (dataInicio === undefined || dataTermino === undefined || numeroCartao === undefined || nomeCartao === undefined || cvcCartao === undefined || validadeCartao === undefined) {
             alert("Preencha todas as informações para prosseguir com a reserva!");
             return;
@@ -31,12 +31,12 @@ export default function Reservar() {
             }
             const cartao: Cartao = {
                 numero: numeroCartao,
-                nome: nomeCartao,
+                titular: nomeCartao,
                 dataValidade: validadeCartao,
                 cvc: cvcCartao
             
             }
-
+            console.log(dataInicio);
             reservarCarro(reserva, cartao);
             navigate("/reserva-solicitada");
         }
@@ -52,11 +52,11 @@ export default function Reservar() {
                     <div className="flex gap-4">
                         <div className="flex flex-col">
                             <label htmlFor="">Data de início:</label>
-                            <input type="date" className="p-3 rounded" onChange={(event) => setDataInicio(new Date(event.target.value))}/>
+                            <input type="date" className="p-3 rounded" onChange={(event) => setDataInicio(new Date(event.target.value).toISOString().slice(0, 10))}/>
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="">Data de devolução:</label>
-                            <input type="date" className="p-3 rounded" onChange={(event) => setDataTermino(new Date(event.target.value))}/>
+                            <input type="date" className="p-3 rounded" onChange={(event) => setDataTermino(new Date(event.target.value).toISOString().slice(0, 10))}/>
                         </div>
                     </div>
                     

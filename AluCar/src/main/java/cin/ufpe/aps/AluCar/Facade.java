@@ -18,6 +18,8 @@ import cin.ufpe.aps.AluCar.models.Cartao;
 import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
 
+import cin.ufpe.aps.AluCar.subsistemas.GoogleEmailService;
+
 import java.util.List;
 
 @Component
@@ -28,9 +30,13 @@ public class Facade {
     private ControleHistorico controleHistorico;
     private Carros carros;
     private Reservas reservas;
-    private Usuario usuario;
+    // private Usuario usuario;
+    private Usuario usuarioH;
+    private Usuario usuarioE;
 	private ControleReserva controleReserva;
-    private Reserva reservaProposta;
+    private GoogleEmailService emailService;
+    //private Reserva reservaProposta;
+    
 
     public Facade(){
       
@@ -47,21 +53,25 @@ public class Facade {
 
         this.controleHistorico = new ControleHistorico();
         this.controleReserva = new ControleReserva();
+        this.emailService = new GoogleEmailService();
 
         this.reservas = new Reservas(fabrica.CriaRepoReservas());
         Cartao cartao = new Cartao("1111222233334444", "João da Silva", "12/25", "123"); 
-        this.usuario = new Usuario("Joao da Silva", "senha123", "joao@email.com", cartao);
+        this.usuarioE = new Usuario("Gustao", "senha123", "gcc2@cin.ufpe.br", cartao);
+        this.usuarioH = new Usuario("Gustao", "senha123", "joao@email.com", cartao);
 
-        // Provided values
+        /* 
+        Provided values
         String placa = "JKL3456";
-        Date dataInicial = Date.valueOf("2023-03-20");
-        Date dataFinal = Date.valueOf("2023-04-02");
+        Date dataInicial = Date.valueOf("2023-03-26");
+        Date dataFinal = Date.valueOf("2023-03-29");
 
         // Instantiate the Reserva class with provided values
-        this.reservaProposta = new Reserva(null, placa, dataInicial, dataFinal, null, null);
+        this.reservaProposta = new Reserva(null, placa, dataInicial, dataFinal, null, "joao@email.com");
 
 
         //visualizarHistorico();
+        */
     }
 
 
@@ -82,7 +92,7 @@ public class Facade {
     }
 
     public ResponseEntity<List<Reserva>> visualizarHistorico() {
-        List<Reserva> x = controleHistorico.obterHistorico(reservas, usuario);
+        List<Reserva> x = controleHistorico.obterHistorico(reservas, usuarioH);
         System.out.println(x);
        
         return ResponseEntity.ok(x);
@@ -97,13 +107,9 @@ public class Facade {
         
     }
 
-    public ResponseEntity<Boolean> validaReserva() {
-        Boolean x = controleReserva.validaReserva(reservas, reservaProposta);
-        return ResponseEntity.ok(x);
-    }
-
-    public ResponseEntity<Boolean> solicitaPagamento(Cartao cartao) {
-        Boolean x = controleReserva.realizaPagamento(reservaProposta, reservas, cartao, usuario);
+    public ResponseEntity<Boolean> solicitaPagamento(Reserva reserva, Cartao cartao) {
+        // Cartao cartao = new Cartao("1111222233334444", "João da Silva", "12/25", "123");
+        Boolean x = controleReserva.validaReserva(reserva, reservas, cartao, usuarioE, this.emailService);
         System.out.println("boleano: ===================================");
         System.out.println(x);
         System.out.println("=============================================");

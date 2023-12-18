@@ -51,7 +51,7 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
 
     const reservarCarro = async (reserva: Reserva, cartao: Cartao) => {
         console.log(reserva, cartao);
-        axios.post('http://localhost:8080/reserva/validaReserva', {reserva, cartao})
+        axios.post('http://localhost:8080/reserva/solicitaPagamento', {reserva, cartao})
             .then((response) => {
                 setReservaConfirmada(response.data);
                 console.log(response.data);
