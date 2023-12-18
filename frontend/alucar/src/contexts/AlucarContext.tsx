@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useState } from 'react';
 import axios from 'axios';
-import { Car, Reserva } from '../types';
+import { Car, Cartao, Reserva } from '../types';
 
 type AlucarContextType = {
     historico: Reserva[];
@@ -11,7 +11,7 @@ type AlucarContextType = {
     getCarroPorModelo: (modelo: string) => Promise<void>;
     reservaConfirmada: boolean;
     setReservaConfirmada: React.Dispatch<React.SetStateAction<boolean>>;
-    reservarCarro: (reserva: Reserva) => Promise<void>;
+    reservarCarro: ( reserva: Reserva, cartao: Cartao ) => Promise<void>;
 };
 
 interface AlucarProviderProps {
@@ -49,8 +49,9 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
             });
     }
 
-    const reservarCarro = async (reserva: Reserva) => {
-        axios.post('http://localhost:8080/reserva/validaReserva', reserva)
+    const reservarCarro = async (reserva: Reserva, cartao: Cartao) => {
+        console.log(reserva, cartao);
+        axios.post('http://localhost:8080/reserva/validaReserva', {reserva, cartao})
             .then((response) => {
                 setReservaConfirmada(response.data);
                 console.log(response.data);
