@@ -137,5 +137,38 @@ public class RepositorioReservasSql implements IRepositorioReservas{
             e.printStackTrace();
         }
     }
+    @Override
+    public List<Reserva> GetReservaMes(Date dataAtual, Date dataProximoMes){ 
+        List<Reserva> listaReserva = new ArrayList<Reserva>();
+        Reserva reservaBuffer = null;
+
+        String sql = "SELECT * \"FROM Reserva\" WHERE (dataInicio BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
+                "OR (dataTermino BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
+                "OR (dataInicio <= '" + dataAtual + "' AND dataTermino >= '" + dataProximoMes + "');";
+             
+        try (ResultSet result = this.databaseDAO.executeQuery(sql)) {
+    
+            // Check if the result set has a row
+            while (result.next()) {
+                // Retrieve values from the result set
+                String placa = result.getString("placa");
+                Float valor = result.getFloat("valor");
+                Integer taxa = result.getInt("taxa");
+                Date dataInicio = result.getDate("dataInicio");
+                Date dataTermino = result.getDate("dataTermino");
+                String usuario = result.getString("usuario");
+
+                // Create a Reserva object using the retrieved values
+                reservaBuffer = new Reserva(valor, placa, dataInicio, dataTermino, taxa, usuario);
+                listaReserva.add(reservaBuffer);
+
+            }         
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return listaReserva;
+    }
     
 }

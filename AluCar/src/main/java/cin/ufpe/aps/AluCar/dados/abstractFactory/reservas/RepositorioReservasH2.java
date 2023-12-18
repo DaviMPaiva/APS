@@ -1,5 +1,6 @@
 package cin.ufpe.aps.AluCar.dados.abstractFactory.reservas;
 
+import java.sql.Date;
 import java.util.List;
 
 import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAOH2;
@@ -32,6 +33,11 @@ public class RepositorioReservasH2 implements IRepositorioReservas{
     public List<Reserva> validaAnyReserva(Reserva reserva) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'validaAnyReserva'");
+    }
+    @Override
+    public List<Reserva> GetReservaMes(Date dataAtual, Date dataProximoMes) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'GetReservaMes'");
     }
     
 }
