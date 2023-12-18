@@ -30,7 +30,9 @@ public class Facade {
     private ControleHistorico controleHistorico;
     private Carros carros;
     private Reservas reservas;
-    private Usuario usuario;
+    // private Usuario usuario;
+    private Usuario usuarioH;
+    private Usuario usuarioE;
 	private ControleReserva controleReserva;
     private GoogleEmailService emailService;
     //private Reserva reservaProposta;
@@ -55,7 +57,8 @@ public class Facade {
 
         this.reservas = new Reservas(fabrica.CriaRepoReservas());
         Cartao cartao = new Cartao("1111222233334444", "João da Silva", "12/25", "123"); 
-        this.usuario = new Usuario("Gustao", "senha123", "gcc2@cin.ufpe.br", cartao);
+        this.usuarioE = new Usuario("Gustao", "senha123", "gcc2@cin.ufpe.br", cartao);
+        this.usuarioH = new Usuario("Gustao", "senha123", "joao@email.com", cartao);
 
         /* 
         Provided values
@@ -89,7 +92,7 @@ public class Facade {
     }
 
     public ResponseEntity<List<Reserva>> visualizarHistorico() {
-        List<Reserva> x = controleHistorico.obterHistorico(reservas, usuario);
+        List<Reserva> x = controleHistorico.obterHistorico(reservas, usuarioH);
         System.out.println(x);
        
         return ResponseEntity.ok(x);
@@ -106,7 +109,7 @@ public class Facade {
 
     public ResponseEntity<Boolean> solicitaPagamento(Reserva reserva, Cartao cartao) {
         // Cartao cartao = new Cartao("1111222233334444", "João da Silva", "12/25", "123");
-        Boolean x = controleReserva.validaReserva(reserva, reservas, cartao, usuario, this.emailService);
+        Boolean x = controleReserva.validaReserva(reserva, reservas, cartao, usuarioE, this.emailService);
         System.out.println("boleano: ===================================");
         System.out.println(x);
         System.out.println("=============================================");
