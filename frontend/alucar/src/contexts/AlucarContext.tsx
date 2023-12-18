@@ -39,7 +39,7 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
     }
 
     const getCarrosDisponiveis = async (dataInicio: string, dataTermino: string) => {   
-        axios.get(`http://localhost:8080/pesquisar/pesquisarModelo/${dataInicio}/${dataTermino}`)
+        axios.get(`http://localhost:8080/pesquisar/pesquisaCarrosDisponiveis/${dataInicio}/${dataTermino}`)
             .then((response) => {
                 setPesquisaCarros(response.data);
                 console.log(response.data);
