@@ -34,11 +34,11 @@ export default function PesquisarModelo() {
                     <div className="flex gap-4">
                         <div className="flex flex-col gap-2">
                             <label htmlFor="">Data de Início:</label>
-                            <input type="date" className="p-3 rounded" onChange={handleChangeDataInicio}/>
+                            <input type="date" className="p-3 rounded text-gray-900" onChange={handleChangeDataInicio}/>
                         </div>
                         <div className="flex flex-col gap-2">
                             <label htmlFor="">Data de Término:</label>
-                            <input type="date" className="p-3 rounded" onChange={handleChangeDataTermino}/>
+                            <input type="date" className="p-3 rounded text-gray-900" onChange={handleChangeDataTermino}/>
                         </div>
                     </div>
                     <button type="submit" className="p-3 bg-yellow-300 hover:bg-yellow-500 text-gray-900 rounded">Buscar</button>

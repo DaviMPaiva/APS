@@ -21,11 +21,11 @@ public class CarListIteratorWoman implements CarIterator {
     private List<Car> reOrder(List<Car> cars){
 
         Collections.sort(cars, Comparator.comparing(Car::getModelo, (s1, s2) -> {
-            // Custom logic for substring comparison
-            if (s1.contains("Renegade")) {
-                return s2.contains("Renegade") ? s1.compareTo(s2) : -1;
-            } else if (s1.contains("Corolla")) {
-                return s2.contains("Corolla") ? s1.compareTo(s2) : 1;
+            // Custom comparator to handle substring "Jeep"
+            if (s1.contains("Jeep") && !s2.contains("Jeep")) {
+                return -1;
+            } else if (!s1.contains("Jeep") && s2.contains("Jeep")) {
+                return 1;
             } else {
                 return s1.compareTo(s2);
             }
