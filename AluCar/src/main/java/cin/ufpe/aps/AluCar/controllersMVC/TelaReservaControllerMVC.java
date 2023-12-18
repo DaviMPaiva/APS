@@ -10,6 +10,7 @@ import cin.ufpe.aps.AluCar.subsistemas.GoogleEmailService;
 import cin.ufpe.aps.AluCar.Facade;
 import cin.ufpe.aps.AluCar.models.Cartao;
 import cin.ufpe.aps.AluCar.models.Reserva;
+import cin.ufpe.aps.AluCar.models.SolicitacaoPagamento;
 
 
 @RestController
@@ -34,7 +35,9 @@ public class TelaReservaControllerMVC {
     }*/
 
     @PostMapping("/solicitaPagamento")
-    public ResponseEntity<Boolean> solicitaPagamento(@RequestBody Reserva reserva, Cartao cartao) {
+    public ResponseEntity<Boolean> solicitaPagamento(@RequestBody SolicitacaoPagamento pagamento) {
+        Reserva reserva = pagamento.getReserva();
+        Cartao cartao = pagamento.getCartao();
         return facade.solicitaPagamento(reserva, cartao);
     }
 }
