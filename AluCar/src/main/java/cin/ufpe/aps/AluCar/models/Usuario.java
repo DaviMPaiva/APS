@@ -5,10 +5,10 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private Integer cartao;
+    private Cartao cartao;
 
     // Construtor
-    public Usuario(String nome, String senha, String email, Integer cartao) {
+    public Usuario(String nome, String senha, String email, Cartao cartao) {
         this.nome = nome;
         this.senha = senha;
         this.email = email;
@@ -40,11 +40,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public Integer getCartao() {
+    public Cartao getCartao() {
         return this.cartao;
     }
 
-    public void setCartao(Integer cartao) {
+    public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
 }

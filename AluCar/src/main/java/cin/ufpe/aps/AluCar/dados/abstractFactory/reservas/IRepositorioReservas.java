@@ -7,4 +7,5 @@ import cin.ufpe.aps.AluCar.models.Reserva;
 public interface IRepositorioReservas {
     List<Reserva> getReserva(String email);
     void setReserva(Reserva reserva);
+    List<Reserva> validaReserva(Reserva reserva);
 }

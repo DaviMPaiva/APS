@@ -20,8 +20,10 @@ public interface InterfaceReservas {
     List<Reserva> buscaHistorico(Usuario usuario);
 
     // Cria nova reserva
-    void criaNovaReserva(Float valor, Car carro, Date dataInicio, Date dataTermino, Float taxa, Usuario usuario);
+    void criaNovaReserva(Reserva reserva);
 
     // Pesquisa carros disponíveis e retorna um objeto Carro
     Car pesquisaCarrosDisponiveis();
+
+    boolean validaReserva(Reserva reserva);
 }

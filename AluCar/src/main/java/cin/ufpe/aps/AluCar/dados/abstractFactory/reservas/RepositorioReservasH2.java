@@ -23,5 +23,10 @@ public class RepositorioReservasH2 implements IRepositorioReservas{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setReserva'");
     }
+    @Override
+    public List<Reserva> validaReserva(Reserva reserva) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'validaReserva'");
+    }
     
 }

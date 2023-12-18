@@ -16,9 +16,10 @@ public class TelaReservaControllerMVC {
 
     @Autowired
     private GoogleEmailService gmailService;
+    @Autowired
     private Facade facade;
 
-
+    /*
     @PostMapping("/testEmail")
     public ResponseEntity<String> adicionarCarro(@RequestBody String email) throws AuthenticationFailedException {
         try {
@@ -28,12 +29,16 @@ public class TelaReservaControllerMVC {
             // Tratamento genérico para outras exceções
             return ResponseEntity.badRequest().body("Erro ao enviar e-mail.");
         }
-    }
+    }*/
 
-    /*@PostMapping("/validaReserva")
-    public ResponseEntity<String> validaReserva(@RequestBody Boolean is_valid) throws AuthenticationFailedException {
+    
+    @GetMapping("/validaReserva")
+    public ResponseEntity<Boolean> validaReserva() {
         return facade.validaReserva();
     }
-    */
-    
+
+    @GetMapping("/solicitaPagamento")
+    public ResponseEntity<Boolean> validaReserva() {
+        return facade.validaReserva();
+    }
 }

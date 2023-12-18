@@ -2,6 +2,7 @@ package cin.ufpe.aps.AluCar.dados.abstractFactory.carros;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAOH2;
 import cin.ufpe.aps.AluCar.models.Car;
@@ -46,5 +47,11 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
     public void setCarro(Car car) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+    }
+
+    @Override
+    public List<Car> getCarrosModelo(String modelo) throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCarrosModelo'");
     }
 }

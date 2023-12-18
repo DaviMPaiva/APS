@@ -43,17 +43,25 @@ public class Reservas implements InterfaceReservas {
     }
 
     @Override
-    public void criaNovaReserva(Float valor, Car carro, Date dataInicio, Date dataTermino, Float taxa, Usuario usuario) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-
+    public void criaNovaReserva(Reserva reserva) {
+        //adciona uma reserva ao banco de dados
+        repoReserva.setReserva(reserva);
     }
 
     @Override
     public Car pesquisaCarrosDisponiveis() {
 
-                throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+    throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
 
+    }
 
-  }
+	@Override
+	public boolean validaReserva(Reserva reserva) {
+        // make the queries
+        List<Reserva> listaReserva = repoReserva.validaReserva(reserva);
+        if (listaReserva == null || listaReserva.isEmpty()) {
+            return true;
+        }
+        return false;
+	}
 }

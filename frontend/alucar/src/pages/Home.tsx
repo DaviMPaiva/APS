@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { AlucarContext } from "../contexts/AlucarContext";
-import axios from "axios";
 import Historico from "./Historico";
 import { Link } from "react-router-dom";
 

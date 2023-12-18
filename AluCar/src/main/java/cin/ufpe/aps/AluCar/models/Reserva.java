@@ -23,7 +23,6 @@ public class Reserva {
     }
 
     // Métodos Getter e Setter intercalados
-
     public Float getValor() {
         return this.valor;
     }

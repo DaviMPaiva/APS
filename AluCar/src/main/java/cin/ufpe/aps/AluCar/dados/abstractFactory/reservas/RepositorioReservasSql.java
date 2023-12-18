@@ -51,9 +51,54 @@ public class RepositorioReservasSql implements IRepositorioReservas{
     }
 
     @Override
+    public List<Reserva> validaReserva(Reserva reserva) {
+        List<Reserva> listaReserva = new ArrayList<Reserva>();
+        Reserva reservaBuffer = null;
+        
+        String sql = "SELECT * FROM \"eserva\" WHERE placa = '" + reserva.getCarro() + 
+                                "' AND dataInicio < '" + reserva.getDataInicio() +
+                                "' AND dataTermino > '"+ reserva.getDataTermino() +"'";
+        
+        try (ResultSet result = this.databaseDAO.executeQuery(sql)) {
+    
+            // Check if the result set has a row
+            while (result.next()) {
+                // Retrieve values from the result set
+                String placa = result.getString("placa");
+                Float valor = result.getFloat("valor");
+                Integer taxa = result.getInt("taxa");
+                Date dataInicio = result.getDate("dataInicio");
+                Date dataTermino = result.getDate("dataTermino");
+                String usuario = result.getString("usuario");
+
+                // Create a Reserva object using the retrieved values
+                reservaBuffer = new Reserva(valor, placa, dataInicio, dataTermino, taxa, usuario);
+                listaReserva.add(reservaBuffer);
+
+            }         
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return listaReserva;
+    }
+
+    @Override
     public void setReserva(Reserva reserva) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setReserva'");
+        String sql = "INSERT INTO Reserva (placa, valor, taxa, dataInicio, dataTermino, usuario) VALUES (" + 
+             reserva.getCarro()       +","+
+             reserva.getValor()       +","+ 
+             reserva.getTaxa()        +","+
+             reserva.getDataInicio()  +","+
+             reserva.getDataTermino() +","+
+             reserva.getUsuario()     +");";
+
+        try (ResultSet result = this.databaseDAO.executeQuery(sql)) {
+            System.out.println("nice");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     
 }
