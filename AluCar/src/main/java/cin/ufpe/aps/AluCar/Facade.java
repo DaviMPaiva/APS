@@ -99,9 +99,6 @@ public class Facade {
 
     public ResponseEntity<Boolean> validaReserva() {
         Boolean x = controleReserva.validaReserva(reservas, reservaProposta);
-        System.out.println("boleano: ===================================");
-        System.out.println(x);
-        System.out.println("=============================================");
         return ResponseEntity.ok(x);
     }
 

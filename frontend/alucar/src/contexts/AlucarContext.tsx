@@ -65,6 +65,6 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
             {children}
         </AlucarContext.Provider>
     );
-};
+}
 
 export default AlucarProvider;
