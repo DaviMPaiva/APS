@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import Header from "../components/Header";
 import { Reserva, Cartao } from "../types";
 import { AlucarContext } from "../contexts/AlucarContext";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Reservar() {
 
@@ -13,7 +13,7 @@ export default function Reservar() {
     const [cvcCartao, setCvcCartao] = useState<string>();
     const [validadeCartao, setValidadeCartao] = useState<string>();
     const { reservarCarro } = useContext(AlucarContext);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const criarReserva = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -38,7 +38,7 @@ export default function Reservar() {
             }
             console.log(dataInicio);
             reservarCarro(reserva, cartao);
-            //navigate("/");
+            navigate("/reserva-solicitada");
         }
         
     }
@@ -79,7 +79,7 @@ export default function Reservar() {
                             <input type="text" className="p-3 rounded" onChange={(event) => setCvcCartao(event.target.value)}/>
                         </div>
                     </div>
-                    <button type="submit" className="p-3 bg-yellow-300 hover:bg-yellow-500 text-gray-900 rounded ">Solicitar Reserva</button>
+                    <button type="submit" className="p-3 bg-blue-300 hover:bg-blue-500 text-gray-900 rounded ">Solicitar Reserva</button>
                 </form>
             </div>
         </div>
