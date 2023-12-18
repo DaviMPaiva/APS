@@ -23,3 +23,10 @@ export interface Usuario {
     senha: string;
     cartao: number;
 }
+
+export interface Cartao {
+    numero: string;
+    nome: string;
+    dataValidade: string;
+    cvc: string;
+}

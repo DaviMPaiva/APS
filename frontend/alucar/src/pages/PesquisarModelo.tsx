@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import { AlucarContext } from "../contexts/AlucarContext";
 
@@ -16,6 +16,10 @@ export default function PesquisarModelo() {
         console.log(modelo);
         getCarroPorModelo(modelo);
     }
+
+    useEffect(() => {
+        console.log(pesquisaModelo);
+    },[pesquisaModelo])
 
     return (
         <div className="flex flex-col m-6 items-center">
