@@ -5,7 +5,9 @@ import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.*;
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Reservas implements InterfaceReservas {
 
@@ -49,19 +51,27 @@ public class Reservas implements InterfaceReservas {
     }
 
     @Override
-    public Car pesquisaCarrosDisponiveis() {
+    public List<Car> pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
+        //pega todas as reservas para aquela data
+        List<Reserva> listaReserva = repoReserva.validaAnyReserva(reserva);
+        //pega todos os carros nessas reservas
+        Set<String> carroSet = new HashSet<>();
 
-    throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+        //pega os carros sem repeticao
+        for (Reserva res : listaReserva) {
+            carroSet.add(res.getCarro());
+        }
 
+        //passa os carros e o usario para a classe de carros fazer um interator
+        List<Car> carros = cars.pesquisaCarrosDisponiveis(carroSet);
+
+        return carros;
     }
 
 	@Override
-	public boolean validaReserva(Reserva reserva) {
+	public List<Reserva> validaReserva(Reserva reserva) {
         // make the queries
         List<Reserva> listaReserva = repoReserva.validaReserva(reserva);
-        if (listaReserva == null || listaReserva.isEmpty()) {
-            return true;
-        }
-        return false;
+        return listaReserva;
 	}
 }

@@ -14,7 +14,8 @@ public class ControleReserva {
     public boolean validaReserva(Reserva reserva, Reservas reservas, Cartao cartao, Usuario usuario, EmailService emailService) {
         //pega todas as reservas do carro e entre as dadas verificas
         //se der null então aceite, caso contrario rejeite
-        if (reservas.validaReserva(reserva)){
+        List<Reserva> listaReserva = reservas.validaReserva(reserva);
+        if (listaReserva == null || listaReserva.isEmpty()) {
             return this.realizaPagamento(reserva, reservas, cartao, usuario, emailService);
         }else{
             return false;

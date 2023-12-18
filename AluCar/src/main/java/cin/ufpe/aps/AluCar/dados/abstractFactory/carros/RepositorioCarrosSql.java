@@ -17,11 +17,12 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
         this.databaseDAO = databaseDAO;
     }
     @Override
-    public Car getCarro() {
+    public Car getCarro(String placaRecebe) {
+        //TODO resolver isso aqui
         Car car = null;
     
         
-        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"car\" WHERE placa = 'ABC123'")) {
+        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"car\" WHERE placa = '"+  placaRecebe +"'")) {
     
             // Check if the result set has a row
             if (result.next()) {
@@ -43,6 +44,37 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
         }
     
         return car;
+    }
+
+    @Override
+    public List<Car> getAllCarro() {
+        Car car = null;
+        List<Car> listaCarros = new ArrayList<Car>();
+    
+        
+        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"car\"")) {
+    
+            // Check if the result set has a row
+            while (result.next()) {
+                // Retrieve values from the result set
+                String modelo = result.getString("modelo");
+                String placa = result.getString("placa");
+                Float preco = result.getFloat("preco");
+                int ano = result.getInt("ano");
+                String combustivel = result.getString("combustivel");
+                String transmissao = result.getString("transmissao");
+                String linkFotos = result.getString("linkFotos");
+                Integer locadora = result.getInt("locadora");
+    
+                // Create a Car object using the retrieved values
+                car = new Car(modelo, placa, preco, ano, combustivel, transmissao, linkFotos, locadora);
+                listaCarros.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return listaCarros;
     }
 
     @Override

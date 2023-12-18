@@ -1,5 +1,6 @@
 package cin.ufpe.aps.AluCar.proxy;
 
+import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.models.*;
 
 import java.sql.Date;
@@ -23,7 +24,7 @@ public interface InterfaceReservas {
     void criaNovaReserva(Reserva reserva);
 
     // Pesquisa carros disponíveis e retorna um objeto Carro
-    Car pesquisaCarrosDisponiveis();
+    List<Car> pesquisaCarrosDisponiveis(Reserva reserva, Carros cars);
 
-    boolean validaReserva(Reserva reserva);
+    List<Reserva> validaReserva(Reserva reserva);
 }

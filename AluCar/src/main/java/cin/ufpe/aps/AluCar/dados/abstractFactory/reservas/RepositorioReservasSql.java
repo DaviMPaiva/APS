@@ -85,6 +85,41 @@ public class RepositorioReservasSql implements IRepositorioReservas{
     }
 
     @Override
+    public List<Reserva> validaAnyReserva(Reserva reserva) {
+        List<Reserva> listaReserva = new ArrayList<Reserva>();
+        Reserva reservaBuffer = null;
+
+        String sql = "SELECT * FROM \"reserva\" WHERE (datainicio < '" + reserva.getDataInicio() + "' AND datatermino > '" + reserva.getDataTermino() + "') " +
+             "OR (datainicio < '" + reserva.getDataInicio() + "' AND datatermino > '" + reserva.getDataInicio() + "') " +
+             "OR (datainicio < '" + reserva.getDataTermino() + "' AND datatermino > '" + reserva.getDataTermino() + "')";
+
+        
+        try (ResultSet result = this.databaseDAO.executeQuery(sql)) {
+    
+            // Check if the result set has a row
+            while (result.next()) {
+                // Retrieve values from the result set
+                String placa = result.getString("placa");
+                Float valor = result.getFloat("valor");
+                Integer taxa = result.getInt("taxa");
+                Date dataInicio = result.getDate("dataInicio");
+                Date dataTermino = result.getDate("dataTermino");
+                String usuario = result.getString("usuario");
+
+                // Create a Reserva object using the retrieved values
+                reservaBuffer = new Reserva(valor, placa, dataInicio, dataTermino, taxa, usuario);
+                listaReserva.add(reservaBuffer);
+
+            }         
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return listaReserva;
+    }
+
+    @Override
     public void setReserva(Reserva reserva) {
         String sql = "INSERT INTO \"reserva\" (placa, valor, taxa, dataInicio, dataTermino, usuario) VALUES (" + 
             "'" + reserva.getCarro() + "'"       +","+

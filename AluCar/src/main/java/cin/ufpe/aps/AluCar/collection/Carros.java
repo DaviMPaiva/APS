@@ -1,7 +1,9 @@
 package cin.ufpe.aps.AluCar.collection;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import cin.ufpe.aps.AluCar.dados.abstractFactory.carros.IRepositorioCarros;
 import cin.ufpe.aps.AluCar.models.Car;
@@ -15,9 +17,9 @@ public class Carros {
         this.repoCarros = repoCarros;
     }
 
-    public Car PesquisaCarrosDisponiveis(){
+    public Car PesquisaCarrosDisponiveis(String placa){
         try {
-            this.carro = this.repoCarros.getCarro();
+            this.carro = this.repoCarros.getCarro(placa);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -33,5 +35,19 @@ public class Carros {
         }
 
         return carros;
+    }
+
+    public List<Car> pesquisaCarrosDisponiveis(Set<String> carroSet){
+        List<Car> listaCarros = repoCarros.getAllCarro();
+
+        List<Car> newListCarros = new ArrayList<>();
+
+        for (Car car : listaCarros) {
+            if (!carroSet.contains(car.getPlaca())) {
+                newListCarros.add(car);
+            }
+        }
+
+        return newListCarros;
     }
 }

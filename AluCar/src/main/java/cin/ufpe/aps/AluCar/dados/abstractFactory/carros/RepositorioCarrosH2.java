@@ -15,11 +15,11 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
     }
 
     @Override
-    public Car getCarro() {
+    public Car getCarro(String placaRecebe) {
         Car car = null;
     
         
-        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"CAR\" WHERE placa = 'DEF5678'")) {
+        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"CAR\" WHERE placa = '"+ placaRecebe +"'")) {
     
             // Check if the result set has a row
             if (result.next()) {
@@ -53,5 +53,11 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
     public List<Car> getCarrosModelo(String modelo) throws SQLException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCarrosModelo'");
+    }
+
+    @Override
+    public List<Car> getAllCarro() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllCarro'");
     }
 }
