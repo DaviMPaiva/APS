@@ -18,10 +18,8 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
     }
     @Override
     public Car getCarro(String placaRecebe) {
-        //TODO resolver isso aqui
         Car car = null;
-    
-        
+       
         try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"car\" WHERE placa = '"+  placaRecebe +"'")) {
     
             // Check if the result set has a row

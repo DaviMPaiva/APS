@@ -1,5 +1,6 @@
 package cin.ufpe.aps.AluCar.proxy;
 
+import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.models.*;
 
@@ -24,7 +25,7 @@ public interface InterfaceReservas {
     void criaNovaReserva(Reserva reserva);
 
     // Pesquisa carros disponíveis e retorna um objeto Carro
-    List<Car> pesquisaCarrosDisponiveis(Reserva reserva, Carros cars);
+    CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars);
 
     List<Reserva> validaReserva(Reserva reserva);
 }

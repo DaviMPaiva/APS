@@ -1,6 +1,7 @@
 package cin.ufpe.aps.AluCar.collection;
 
 import cin.ufpe.aps.AluCar.proxy.*;
+import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.IRepositorioReservas;
@@ -79,7 +80,7 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
     }
 
     @Override
-    public List<Car> pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
+    public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
         if( reserva.getDataInicio().after(this.currentDate) && reserva.getDataInicio().before(this.futureDate)){
             //pega todas as reservas para aquela data
             List<Reserva> listaReserva = new ArrayList<Reserva>();
@@ -101,7 +102,7 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
             }
 
             //passa os carros e o usario para a classe de carros fazer um interator
-            List<Car> carros = cars.pesquisaCarrosDisponiveis(carroSet);
+            CarList carros = cars.pesquisaCarrosDisponiveis(carroSet);
 
             return carros;
         }else{

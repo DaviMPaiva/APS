@@ -1,5 +1,6 @@
 package cin.ufpe.aps.AluCar;
 
+import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.*;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
 import cin.ufpe.aps.AluCar.controllers.ControleReserva;
@@ -63,8 +64,8 @@ public class Facade {
 
         //mocks
         Cartao cartao = new Cartao("1111222233334444", "João da Silva", "12/25", "123"); 
-        this.usuarioE = new Usuario("Gustao", "senha123", "gcc2@cin.ufpe.br", cartao);
-        this.usuarioH = new Usuario("Gustao", "senha123", "joao@email.com", cartao);
+        this.usuarioE = new Usuario("Gustao", "senha123", "gcc2@cin.ufpe.br", cartao, 'f');
+        this.usuarioH = new Usuario("Gustao", "senha123", "joao@email.com", cartao, 'm');
 
         // String placa = "JKL3456";
         // Date dataInicial = Date.valueOf("2023-03-26");
@@ -124,14 +125,14 @@ public class Facade {
         return ResponseEntity.ok(x);
     }
 
-    public ResponseEntity<List<Car>> pesquisaCarrosDisponiveis(String dataInicio, String dataTermino) {
+    public ResponseEntity<CarList> pesquisaCarrosDisponiveis(String dataInicio, String dataTermino) {
         
         //cria a class o mais cedo possivel
         Date dataInicial = Date.valueOf(dataInicio);
         Date dataFinal = Date.valueOf(dataTermino);
         reservaProposta = new Reserva(null, null, dataInicial, dataFinal, null, null);
 
-        List<Car> x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros);
+        CarList x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros);
         return ResponseEntity.ok(x);
     }
 }

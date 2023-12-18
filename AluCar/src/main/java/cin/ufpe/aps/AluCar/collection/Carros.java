@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.carros.IRepositorioCarros;
 import cin.ufpe.aps.AluCar.models.Car;
 
@@ -37,7 +38,7 @@ public class Carros {
         return carros;
     }
 
-    public List<Car> pesquisaCarrosDisponiveis(Set<String> carroSet){
+    public CarList pesquisaCarrosDisponiveis(Set<String> carroSet){
         List<Car> listaCarros = repoCarros.getAllCarro();
 
         List<Car> newListCarros = new ArrayList<>();
@@ -48,6 +49,8 @@ public class Carros {
             }
         }
 
-        return newListCarros;
+        CarList carList = new CarList(newListCarros);
+
+        return carList;
     }
 }

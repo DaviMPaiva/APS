@@ -1,6 +1,7 @@
 package cin.ufpe.aps.AluCar.collection;
 
 import cin.ufpe.aps.AluCar.proxy.*;
+import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.*;
 
@@ -51,7 +52,7 @@ public class Reservas implements InterfaceReservas {
     }
 
     @Override
-    public List<Car> pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
+    public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
         //pega todas as reservas para aquela data
         List<Reserva> listaReserva = repoReserva.validaAnyReserva(reserva);
         //pega todos os carros nessas reservas
@@ -63,7 +64,7 @@ public class Reservas implements InterfaceReservas {
         }
 
         //passa os carros e o usario para a classe de carros fazer um interator
-        List<Car> carros = cars.pesquisaCarrosDisponiveis(carroSet);
+        CarList carros = cars.pesquisaCarrosDisponiveis(carroSet);
 
         return carros;
     }

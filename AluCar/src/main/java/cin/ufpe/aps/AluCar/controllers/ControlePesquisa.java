@@ -3,6 +3,7 @@ package cin.ufpe.aps.AluCar.controllers;
 import java.util.List;
 
 import cin.ufpe.aps.AluCar.collection.Reservas;
+import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
@@ -16,7 +17,7 @@ public class ControlePesquisa {
         return carros.PesquisaCarrosModelo(modelo);
     }
 
-    public List<Car> pesquisaCarrosDisponiveis(InterfaceReservas reservas, Reserva reserva, Carros cars) {
+    public CarList pesquisaCarrosDisponiveis(InterfaceReservas reservas, Reserva reserva, Carros cars) {
         return reservas.pesquisaCarrosDisponiveis(reserva, cars);
     }
 

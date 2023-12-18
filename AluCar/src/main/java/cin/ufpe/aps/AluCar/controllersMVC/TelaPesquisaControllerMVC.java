@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import cin.ufpe.aps.AluCar.Facade;
+import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.models.Car;
 
 @RequestMapping("/pesquisar")
@@ -28,7 +29,7 @@ public class TelaPesquisaControllerMVC {
     }
 
     @GetMapping("/pesquisaCarrosDisponiveis/{dataInicio}/{dataTermino}")
-    public ResponseEntity<List<Car>> pesquisaCarrosDisponiveis(@PathVariable String dataInicio, @PathVariable String dataTermino) {
+    public ResponseEntity<CarList> pesquisaCarrosDisponiveis(@PathVariable String dataInicio, @PathVariable String dataTermino) {
         return facade.pesquisaCarrosDisponiveis(dataInicio, dataTermino);
     }
 }
