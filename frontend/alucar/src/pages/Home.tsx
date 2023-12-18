@@ -1,6 +1,3 @@
-import { useState, useContext } from "react";
-import { AlucarContext } from "../contexts/AlucarContext";
-import Historico from "./Historico";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 
