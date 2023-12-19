@@ -52,11 +52,11 @@ export default function Reservar() {
                     <div className="flex gap-4">
                         <div className="flex flex-col">
                             <label htmlFor="">Data de início:</label>
-                            <input type="date" className="p-3 rounded" onChange={(event) => setDataInicio(new Date(event.target.value).toISOString().slice(0, 10))}/>
+                            <input type="date" className="p-3 rounded text-gray-900" onChange={(event) => setDataInicio(new Date(event.target.value).toISOString().slice(0, 10))}/>
                         </div>
                         <div className="flex flex-col">
                             <label htmlFor="">Data de devolução:</label>
-                            <input type="date" className="p-3 rounded" onChange={(event) => setDataTermino(new Date(event.target.value).toISOString().slice(0, 10))}/>
+                            <input type="date" className="p-3 rounded text-gray-900" onChange={(event) => setDataTermino(new Date(event.target.value).toISOString().slice(0, 10))}/>
                         </div>
                     </div>
                     

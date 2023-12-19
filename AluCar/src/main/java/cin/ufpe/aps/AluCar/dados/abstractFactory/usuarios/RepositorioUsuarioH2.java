@@ -7,10 +7,10 @@ import cin.ufpe.aps.AluCar.models.Usuario;
 
 public class RepositorioUsuarioH2 implements IRepositorioUsuarios{
 
-    private DatabaseDAOH2 databaseDAO;
+    private DatabaseDAOH2 databaseDAOH2;
 
     public RepositorioUsuarioH2 (DatabaseDAOH2 databaseDAOH2) {
-        this.databaseDAO = databaseDAOH2;
+        this.databaseDAOH2 = databaseDAOH2;
     }
 
     @Override
