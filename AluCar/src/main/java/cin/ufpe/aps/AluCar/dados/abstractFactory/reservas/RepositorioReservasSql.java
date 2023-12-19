@@ -21,7 +21,7 @@ public class RepositorioReservasSql implements IRepositorioReservas{
     public List<Reserva> getReserva(String email) {
         List<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reserva = null;
-        String sql = "SELECT * FROM \"reserva\" WHERE usuario = '" + email + "'";
+        String sql = "SELECT * FROM reserva WHERE usuario = '" + email + "'";
         System.out.println(sql);
         
         try (ResultSet result = this.databaseDAO.executeQuery(sql)) {
@@ -56,7 +56,7 @@ public class RepositorioReservasSql implements IRepositorioReservas{
         List<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reservaBuffer = null;
         
-        String sql = "SELECT * FROM \"reserva\" WHERE placa = '" + reserva.getCarro() + 
+        String sql = "SELECT * FROM reserva WHERE placa = '" + reserva.getCarro() + 
                                 "' AND dataInicio < '" + reserva.getDataInicio() +
                                 "' AND dataTermino > '"+ reserva.getDataTermino() +"'";
         
@@ -90,7 +90,7 @@ public class RepositorioReservasSql implements IRepositorioReservas{
         List<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reservaBuffer = null;
 
-        String sql = "SELECT * FROM \"reserva\" WHERE (datainicio < '" + reserva.getDataInicio() + "' AND datatermino > '" + reserva.getDataTermino() + "') " +
+        String sql = "SELECT * FROM reserva WHERE (datainicio < '" + reserva.getDataInicio() + "' AND datatermino > '" + reserva.getDataTermino() + "') " +
              "OR (datainicio > '" + reserva.getDataInicio() + "' AND datainicio < '" + reserva.getDataTermino() + "') " +
              "OR (datatermino > '" + reserva.getDataInicio() + "' AND datatermino < '" + reserva.getDataTermino() + "')";
 
@@ -122,7 +122,7 @@ public class RepositorioReservasSql implements IRepositorioReservas{
 
     @Override
     public void setReserva(Reserva reserva) {
-        String sql = "INSERT INTO \"reserva\" (placa, valor, taxa, dataInicio, dataTermino, usuario) VALUES (" + 
+        String sql = "INSERT INTO reserva (placa, valor, taxa, dataInicio, dataTermino, usuario) VALUES (" + 
             "'" + reserva.getCarro() + "'"       +","+
             reserva.getValor()       +","+ 
             reserva.getTaxa()        +","+
@@ -143,7 +143,7 @@ public class RepositorioReservasSql implements IRepositorioReservas{
         List<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reservaBuffer = null;
 
-        String sql = "SELECT * FROM \"reserva\" WHERE (dataInicio BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
+        String sql = "SELECT * FROM reserva WHERE (dataInicio BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
                 "OR (dataTermino BETWEEN '" + dataAtual + "' AND '" + dataProximoMes +"')" +
                 "OR (dataInicio <= '" + dataAtual + "' AND dataTermino >= '" + dataProximoMes + "');";
              

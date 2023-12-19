@@ -16,11 +16,12 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
     public RepositorioCarrosSql (DatabaseDAO databaseDAO){
         this.databaseDAO = databaseDAO;
     }
+    
     @Override
     public Car getCarro(String placaRecebe) {
         Car car = null;
        
-        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"car\" WHERE placa = '"+  placaRecebe +"'")) {
+        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM car WHERE placa = '"+  placaRecebe +"'")) {
     
             // Check if the result set has a row
             if (result.next()) {
@@ -50,7 +51,7 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
         List<Car> listaCarros = new ArrayList<Car>();
     
         
-        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM \"car\"")) {
+        try (ResultSet result = this.databaseDAO.executeQuery("SELECT * FROM car")) {
     
             // Check if the result set has a row
             while (result.next()) {
@@ -79,7 +80,7 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
     public List<Car> getCarrosModelo(String modeloPesquisa) {
         Car car = null;
         List<Car> listaCarros = new ArrayList<Car>();
-        String sql = "SELECT * FROM \"car\" WHERE modelo = '" + modeloPesquisa + "'";
+        String sql = "SELECT * FROM car WHERE modelo = '" + modeloPesquisa + "'";
         System.out.println(sql);
     
         
