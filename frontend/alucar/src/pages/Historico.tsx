@@ -1,22 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { AlucarContext } from '../contexts/AlucarContext';
 import Header from '../components/Header';
-import { Reserva } from '../types';
 
 export default function Historico() {
 
     const { historico, getHistorico, } = useContext(AlucarContext);
     const handleHistorico = () => {
         getHistorico();
-    }
-
-    const reservation: Reserva = {
-        valor: 150,
-        carro: "GHI9012",
-        dataInicio: "2021-10-10",
-        dataTermino: "2021-10-11",
-        taxa: 0,
-        usuario: "joao@email.com"
     }
 
     return (
