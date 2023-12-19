@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 
 .env
+.asta.lock
 
 ### STS ###
 .apt_generated
