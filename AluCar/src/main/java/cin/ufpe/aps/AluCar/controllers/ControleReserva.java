@@ -2,11 +2,13 @@ package cin.ufpe.aps.AluCar.controllers;
 
 import java.util.List;
 
+import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.collection.Usuarios;
 import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
 import cin.ufpe.aps.AluCar.subsistemas.EmailService;
+import cin.ufpe.aps.AluCar.models.Car;
 import cin.ufpe.aps.AluCar.models.Cartao;
 
 public class ControleReserva {
@@ -20,6 +22,10 @@ public class ControleReserva {
         }else{
             return false;
         }
+    }
+    
+    public Car getCarroPorPlaca(Carros carros, String placa) {
+        return carros.getCarroPorPlaca(placa);
     }
 
     public boolean realizaPagamento(Reserva reserva, Reservas reservas, Cartao cartao, Usuario usuario, EmailService emailService){

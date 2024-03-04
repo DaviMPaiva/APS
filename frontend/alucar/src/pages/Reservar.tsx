@@ -1,8 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Reserva, Cartao } from "../types";
 import { AlucarContext } from "../contexts/AlucarContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Car } from "../types";
 
 export default function Reservar() {
 
@@ -12,8 +13,23 @@ export default function Reservar() {
     const [nomeCartao, setNomeCartao] = useState<string>();
     const [cvcCartao, setCvcCartao] = useState<string>();
     const [validadeCartao, setValidadeCartao] = useState<string>();
-    const { reservarCarro } = useContext(AlucarContext);
+    const [carro, setCarro] = useState<Car>();
+    const { placa } = useParams();
+
+    const { reservarCarro, getCarroByPlaca } = useContext(AlucarContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const getCar = async () => {
+            if (placa == undefined) {
+                return
+            }
+            const auxCar = await getCarroByPlaca(placa);
+            setCarro(auxCar);
+        }
+
+        getCar();
+    }, [placa])
 
     const criarReserva = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -36,7 +52,6 @@ export default function Reservar() {
                 cvc: cvcCartao
             
             }
-            console.log(dataInicio);
             reservarCarro(reserva, cartao);
             navigate("/reserva-solicitada");
         }
@@ -47,7 +62,17 @@ export default function Reservar() {
         <div className="flex flex-col m-6 items-center">
             <Header/>
             <div className="flex flex-col gap-4 items-center">
-                <p className="font-semibold">Reserve seu carro aqui!</p>
+                <p className="font-semibold text-lg">Reserve seu {carro?.modelo}</p>
+                <img src={carro?.linkFotos} alt={carro?.modelo} className="rounded-sm max-w-sm" />
+                <p className="font-semibold text-xl">Informações do carro</p>
+                <div className="flex flex-col gap-2 bg-white text-black w-full p-3 rounded-md">
+                    <p>Modelo: {carro?.modelo}</p>
+                    <p>Placa: {carro?.placa}</p>
+                    <p>Preço: {carro?.preco}</p>
+                    <p>Ano: {carro?.ano}</p>
+                    <p>Combustível: {carro?.combustivel}</p>
+                    <p>Transmissão: {carro?.transmissao}</p>
+                </div>
                 <form onSubmit={criarReserva} className="flex flex-col items-center gap-5">
                     <div className="flex gap-4">
                         <div className="flex flex-col">
