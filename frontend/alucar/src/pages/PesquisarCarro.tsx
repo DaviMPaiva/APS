@@ -46,7 +46,8 @@ export default function PesquisarModelo() {
                 </form>
                 <div className="grid grid-cols-3 gap-4">
                     {pesquisaCarros.map((carro, index) => (
-                        <Link to={`/reservar/${carro.placa}`} key={index} className="hover:scale-[1.02] ease-in-out duration-300">
+                        <Link to={`/reservar/${carro.placa}`} state={{ datas: [dataInicio, dataTermino] }}
+                            key={index} className="hover:scale-[1.02] ease-in-out duration-300">
                             <LinhaPesquisaCarros key={index} Carro={carro} />
                         </Link>
                     ))}
