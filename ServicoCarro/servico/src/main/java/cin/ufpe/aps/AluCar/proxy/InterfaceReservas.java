@@ -9,23 +9,6 @@ import java.util.List;
 
 public interface InterfaceReservas {
 
-    // Calcula taxas de atraso
-    float calculaTaxasAtraso();
-
-    // Registra pagamento
-    void registraPagamento();
-
-    // Registra taxas
-    void registraTaxas();
-
-    // Busca histórico
-    List<Reserva> buscaHistorico(Usuario usuario);
-
-    // Cria nova reserva
-    void criaNovaReserva(Reserva reserva);
-
     // Pesquisa carros disponíveis e retorna um objeto Carro
     CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars);
-
-    List<Reserva> validaReserva(Reserva reserva);
 }

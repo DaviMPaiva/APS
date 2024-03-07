@@ -2,12 +2,10 @@ package cin.ufpe.aps.AluCar;
 
 import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.*;
-import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
-import cin.ufpe.aps.AluCar.controllers.ControleReserva;
 import cin.ufpe.aps.AluCar.controllers.ControlePesquisa;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaH2;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
+import cin.ufpe.aps.AluCar.dados.FabricaConcretaH2;
+import cin.ufpe.aps.AluCar.dados.FabricaConcretaSql;
+import cin.ufpe.aps.AluCar.dados.DatabaseDAO;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -20,16 +18,12 @@ import cin.ufpe.aps.AluCar.models.Cartao;
 import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
 
-import cin.ufpe.aps.AluCar.subsistemas.GoogleEmailService;
-
 import java.util.List;
 
 @Component
 public class Facade {
 
     @Autowired
-    private Locadoras locadoras;
-    private ControleHistorico controleHistorico;
     private ControlePesquisa controlePesquisa;
     private Carros carros;
     private Reservas reservas;
@@ -37,8 +31,6 @@ public class Facade {
     // private Usuario usuario;
     private Usuario usuarioH;
     private Usuario usuarioE;
-	private ControleReserva controleReserva;
-    private GoogleEmailService emailService;
     //private Reserva reservaProposta;
 	private Usuarios usuarios;
 
@@ -52,10 +44,6 @@ public class Facade {
         //FabricaConcretaH2 fabrica = new FabricaConcretaH2();
 
         this.carros = new Carros(fabrica.CriaRepoCarros());
-        this.reservas = new Reservas(fabrica.CriaRepoReservas());
-        this.proxy = new ProxyReservaCarrosDisponiveis(fabrica.CriaRepoReservas(), reservas);
-        this.locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
-        this.usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
 
         this.controleHistorico = new ControleHistorico();
         this.controleReserva = new ControleReserva();

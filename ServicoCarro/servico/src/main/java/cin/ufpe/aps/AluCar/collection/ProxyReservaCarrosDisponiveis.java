@@ -4,7 +4,7 @@ import cin.ufpe.aps.AluCar.proxy.*;
 import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.collection.Reservas;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.IRepositorioReservas;
+import cin.ufpe.aps.AluCar.dados.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.*;
 
 import java.sql.Date;
@@ -48,37 +48,7 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
         this.cache_reservas = repoReserva.GetReservaMes(this.currentDate,this.futureDate);
     }
 
-    @Override
-    public float calculaTaxasAtraso() {
-        // Implementação do cálculo de taxas de atraso
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-
-    }
-
-    @Override
-    public void registraPagamento() {
-        // Implementação do registro de pagamento
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-
-    }
-
-    @Override
-    public void registraTaxas() {
-        // Implementação do registro de taxas
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-
-    }
-
-    @Override
-    public List<Reserva> buscaHistorico(Usuario usuario) {
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-    }
-
-    @Override
-    public void criaNovaReserva(Reserva reserva) {
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-    }
-
+    
     @Override
     public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
         if( reserva.getDataInicio().after(this.currentDate) && reserva.getDataInicio().before(this.futureDate)){
@@ -109,9 +79,4 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
             return reservas.pesquisaCarrosDisponiveis(reserva, cars);
         }
     }
-
-	@Override
-	public List<Reserva> validaReserva(Reserva reserva) {
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-	}
 }

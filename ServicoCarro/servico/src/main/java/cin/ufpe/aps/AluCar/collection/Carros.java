@@ -6,26 +6,15 @@ import java.util.List;
 import java.util.Set;
 
 import cin.ufpe.aps.AluCar.Iterator.CarList;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.carros.IRepositorioCarros;
+import cin.ufpe.aps.AluCar.dados.carros.IRepositorioCarros;
 import cin.ufpe.aps.AluCar.models.Car;
 
 public class Carros {
 
     private IRepositorioCarros repoCarros;
-    private Car carro;
     private List<Car> carros;
     public Carros(IRepositorioCarros repoCarros){
         this.repoCarros = repoCarros;
-    }
-
-    public Car PesquisaCarrosDisponiveis(String placa){
-        try {
-            this.carro = this.repoCarros.getCarro(placa);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return carro;
     }
 
     public List<Car> PesquisaCarrosModelo(String modelo){
