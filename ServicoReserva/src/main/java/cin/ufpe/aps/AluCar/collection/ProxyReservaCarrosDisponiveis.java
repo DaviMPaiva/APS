@@ -18,7 +18,6 @@ import java.util.Set;
 public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
 
     private IRepositorioReservas repoReserva;
-    private List<Car> cache_carros;
     private List<Reserva> cache_reservas;
     private Reservas reservas;
     private Date currentDate;
@@ -30,6 +29,11 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
         this.MakeCache();
     }
 
+    @Override
+    public List<Reserva> getReservasMes(){
+        return this.cache_reservas;
+    }
+    
     public void MakeCache(){
         // Get the current date
         LocalDate currentDateL = LocalDate.now();

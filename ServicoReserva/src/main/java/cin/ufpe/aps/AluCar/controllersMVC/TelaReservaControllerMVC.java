@@ -41,4 +41,9 @@ public class TelaReservaControllerMVC {
         Cartao cartao = pagamento.getCartao();
         return facade.solicitaPagamento(reserva, cartao);
     }
+
+    @GetMapping("/getReservasMes")
+    public ResponseEntity<List<Reserva>> getReservasMes() {
+        return facade.getReservasMes();
+    }
 }

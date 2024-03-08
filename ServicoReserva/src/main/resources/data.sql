@@ -74,4 +74,7 @@ INSERT INTO Reserva (placa, valor, taxa, dataInicio, dataTermino, usuario) VALUE
   ('ABC1234', 300.00, 10, '2023-01-01', '2023-01-10', 'joao@email.com'),
   ('DEF5678', 250.00, 15, '2023-02-01', '2023-02-15', 'maria@email.com'),
   ('GHI9012', 180.00, 8, '2023-03-01', '2023-03-10', 'carlos@email.com'),
-  ('JKL3456', 250.00, 12, '2023-04-01', '2023-04-15', 'ana@email.com');
+  ('JKL3456', 250.00, 12, '2023-04-01', '2023-04-15', 'ana@email.com'),
+  ('ABC1234', 300.00, 10, '2024-03-03', '2024-03-10', 'joao@email.com'),
+  ('JKL3456', 250.00, 12, '2024-04-03', '2024-04-10', 'ana@email.com'),
+  ('DEF5678', 250.00, 15, '2024-03-09', '2024-03-15', 'joao@email.com');

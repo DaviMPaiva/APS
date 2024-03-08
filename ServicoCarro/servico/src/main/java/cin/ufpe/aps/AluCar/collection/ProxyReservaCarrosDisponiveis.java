@@ -2,8 +2,6 @@ package cin.ufpe.aps.AluCar.collection;
 
 import cin.ufpe.aps.AluCar.proxy.*;
 import cin.ufpe.aps.AluCar.Iterator.CarList;
-import cin.ufpe.aps.AluCar.collection.Carros;
-import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.dados.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.*;
 
@@ -18,7 +16,6 @@ import java.util.Set;
 public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
 
     private IRepositorioReservas repoReserva;
-    private List<Car> cache_carros;
     private List<Reserva> cache_reservas;
     private Reservas reservas;
     private Date currentDate;
@@ -47,7 +44,6 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
         //pega todas as reservas para o proximo mes
         this.cache_reservas = repoReserva.GetReservaMes(this.currentDate,this.futureDate);
     }
-
     
     @Override
     public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {

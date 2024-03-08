@@ -27,7 +27,6 @@ import java.util.List;
 public class Facade {
 
     @Autowired
-    private Locadoras locadoras;
     private ControleHistorico controleHistorico;
     private Carros carros;
     private Reservas reservas;
@@ -52,7 +51,6 @@ public class Facade {
         this.carros = new Carros(fabrica.CriaRepoCarros());
         this.reservas = new Reservas(fabrica.CriaRepoReservas());
         this.proxy = new ProxyReservaCarrosDisponiveis(fabrica.CriaRepoReservas(), reservas);
-        this.locadoras = new Locadoras(fabrica.CriarRepoLocadoras());
         this.usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
 
         this.controleHistorico = new ControleHistorico();
@@ -73,23 +71,6 @@ public class Facade {
 
 
         //visualizarHistorico();
-    }
-
-
-    public ResponseEntity<String> adicionarCarro(Car car) {
-        locadoras.addCarro(car);
-        return ResponseEntity.ok("Carro adicionado com sucesso!");
-    }
-
-    public ResponseEntity<List<Car>> visualizarLocadoras() {
-        List<Car> cars = locadoras.getCarros();
-        locadoras.visualizarLocadoras();
-        return ResponseEntity.ok(cars);
-    }
-
-    public ResponseEntity<String> modificarLocadoras(Car car) {
-        locadoras.modificacoesLocadoras();
-        return ResponseEntity.ok("Locadora modificada com sucesso!");
     }
 
     public ResponseEntity<List<Reserva>> visualizarHistorico() {
@@ -117,4 +98,10 @@ public class Facade {
         Boolean x = controleReserva.validaReserva(reserva, reservas, cartao, usuarioE, this.emailService);
         return ResponseEntity.ok(x);
     }
+
+    public ResponseEntity<List<Reserva>> getReservasMes() {
+        List<Reserva> x = this.controleReserva.getReservasMes(this.proxy);
+        return ResponseEntity.ok(x);
+    }
+    
 }

@@ -8,7 +8,9 @@ import java.sql.Date;
 import java.util.List;
 
 public interface InterfaceReservas {
-
+    
+    // Retorna reservas do mês
+    List<Reserva> getReservasMes();
     // Calcula taxas de atraso
     float calculaTaxasAtraso();
 

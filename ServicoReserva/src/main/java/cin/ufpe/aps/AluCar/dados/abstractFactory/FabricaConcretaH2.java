@@ -1,7 +1,6 @@
 package cin.ufpe.aps.AluCar.dados.abstractFactory;
 
 import cin.ufpe.aps.AluCar.dados.abstractFactory.carros.RepositorioCarrosH2;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.locadoras.RepositorioLocadorasH2;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.RepositorioReservasH2;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.usuarios.RepositorioUsuarioH2;
 
@@ -13,12 +12,6 @@ public class FabricaConcretaH2 implements FabricaAbstrataRepositorio{
     public RepositorioReservasH2 CriaRepoReservas() {
         RepositorioReservasH2 reservasH2 = new RepositorioReservasH2(databaseDAOH2);
         return reservasH2; 
-    }
-
-    @Override
-    public RepositorioLocadorasH2 CriarRepoLocadoras() {
-        RepositorioLocadorasH2 locadoraH2 = new RepositorioLocadorasH2(databaseDAOH2);
-        return locadoraH2; 
     }
 
     @Override

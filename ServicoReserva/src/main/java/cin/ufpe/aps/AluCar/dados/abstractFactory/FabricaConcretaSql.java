@@ -2,7 +2,6 @@
 package cin.ufpe.aps.AluCar.dados.abstractFactory;
 
 import cin.ufpe.aps.AluCar.dados.abstractFactory.carros.RepositorioCarrosSql;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.locadoras.RepositorioLocadorasSql;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.RepositorioReservasSql;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.usuarios.RepositorioUsuarioSql;
 
@@ -14,12 +13,6 @@ public class FabricaConcretaSql implements FabricaAbstrataRepositorio {
     public RepositorioReservasSql CriaRepoReservas() {
         RepositorioReservasSql rrsql = new RepositorioReservasSql(databaseDAO);
         return rrsql;
-    }
-
-    @Override
-    public RepositorioLocadorasSql CriarRepoLocadoras() {
-        RepositorioLocadorasSql locadorasSql = new RepositorioLocadorasSql(databaseDAO);
-        return locadorasSql;
     }
 
     @Override
