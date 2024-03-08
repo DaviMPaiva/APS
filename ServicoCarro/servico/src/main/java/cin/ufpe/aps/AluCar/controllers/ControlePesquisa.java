@@ -11,7 +11,9 @@ import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
 import cin.ufpe.aps.AluCar.proxy.InterfaceReservas;
 import cin.ufpe.aps.AluCar.models.Car;
+import org.springframework.web.bind.annotation.*;
 
+@RestController
 public class ControlePesquisa {
 
 

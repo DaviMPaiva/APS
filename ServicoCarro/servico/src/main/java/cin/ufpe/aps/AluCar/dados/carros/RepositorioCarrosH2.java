@@ -1,4 +1,4 @@
-package cin.ufpe.aps.AluCar.dados.abstractFactory.carros;
+package cin.ufpe.aps.AluCar.dados.carros;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -105,6 +105,12 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
         }
     
         return listaCarros;
+    }
+
+    @Override
+    public void setCarro(Car car) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
     }
 
 }

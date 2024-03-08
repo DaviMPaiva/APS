@@ -32,7 +32,7 @@ public class Facade {
     private Usuario usuarioH;
     private Usuario usuarioE;
     //private Reserva reservaProposta;
-	private Usuarios usuarios;
+	private Usuario usuarios;
 
     //mock
 	private Reserva reservaProposta;
@@ -44,11 +44,10 @@ public class Facade {
         //FabricaConcretaH2 fabrica = new FabricaConcretaH2();
 
         this.carros = new Carros(fabrica.CriaRepoCarros());
-
-        this.controleHistorico = new ControleHistorico();
-        this.controleReserva = new ControleReserva();
+        this.reservas = new Reservas(fabrica.CriaRepoReservas());
+        this.proxy = new ProxyReservaCarrosDisponiveis(fabrica.CriaRepoReservas(), reservas);
+        
         this.controlePesquisa = new ControlePesquisa();
-        this.emailService = new GoogleEmailService();
 
         //mocks
         Cartao cartao = new Cartao("1111222233334444", "João da Silva", "12/25", "123"); 

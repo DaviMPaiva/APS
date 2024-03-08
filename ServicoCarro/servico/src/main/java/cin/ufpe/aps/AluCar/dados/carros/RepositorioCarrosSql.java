@@ -108,5 +108,11 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
     
         return listaCarros;
     }
+
+    @Override
+    public void setCarro(Car car) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+    }
     
 }
