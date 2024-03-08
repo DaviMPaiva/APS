@@ -18,7 +18,7 @@ public class Carros {
         this.repoCarros = repoCarros;
     }
 
-    public Car PesquisaCarrosDisponiveis(String placa){
+    public Car getCarroPorPlaca(String placa){
         try {
             this.carro = this.repoCarros.getCarro(placa);
         } catch (SQLException e) {

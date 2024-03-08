@@ -48,8 +48,8 @@ public class Facade {
 
     public Facade(){
       
-        FabricaConcretaSql fabrica = new FabricaConcretaSql();
-        //FabricaConcretaH2 fabrica = new FabricaConcretaH2();
+        //FabricaConcretaSql fabrica = new FabricaConcretaSql();
+        FabricaConcretaH2 fabrica = new FabricaConcretaH2();
 
         this.carros = new Carros(fabrica.CriaRepoCarros());
         this.reservas = new Reservas(fabrica.CriaRepoReservas());
@@ -105,7 +105,7 @@ public class Facade {
 
     public ResponseEntity<List<Car>> pesquisarCarroPorModelo(String modelo) {
         List<Car> carro = controlePesquisa.pesquisaModelo(carros, modelo);
-        System.out.println(carro);
+        System.out.println("Carro " + carro.get(0));
        
         return ResponseEntity.ok(carro);
         
@@ -117,6 +117,13 @@ public class Facade {
        
         return ResponseEntity.ok(carro);
         
+    }
+
+    public ResponseEntity<Car> getCarroPorPlaca(String placa) {
+        Car carro = this.controleReserva.getCarroPorPlaca(carros, placa);
+        System.out.println(carro);
+       
+        return ResponseEntity.ok(carro);
     }
 
     public ResponseEntity<Boolean> solicitaPagamento(Reserva reserva, Cartao cartao) {

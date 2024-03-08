@@ -10,11 +10,8 @@ export default function Home() {
                 <Link to={`/historico`}>
                     <button className="rounded-full bg-red-300 hover:bg-red-500 px-4 text-gray-900">Ver histórico</button>
                 </Link>
-                <Link to={`/reservar`}>
-                    <button className="rounded-full bg-blue-300 hover:bg-blue-500 px-4 text-gray-900">Reservar</button>
-                </Link>
                 <Link to={`/pesquisar-modelo`}>
-                    <button className="rounded-full bg-yellow-300 hover:bg-yellow-500 px-4 text-gray-900">Pesquisar modelo</button>
+                    <button className="rounded-full bg-yellow-300 hover:bg-yellow-500 px-4 text-gray-900">Ver Catálogo</button>
                 </Link>
             </div>
             

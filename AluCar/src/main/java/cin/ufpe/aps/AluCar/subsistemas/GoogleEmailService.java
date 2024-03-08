@@ -13,7 +13,7 @@ import java.util.Properties;
 @Service
 public class GoogleEmailService implements EmailService {
 
-    private final Dotenv dotenv = Dotenv.configure().filename("/AluCar/.env").load();
+    private final Dotenv dotenv = Dotenv.configure().filename(".env").load();
     private final String remetente = dotenv.get("REMETENTE"); // Substitua pelo seu e-mail do Gmail
     private final String senha = dotenv.get("SENHA"); // Substitua pela senha do seu e-mail do Gmail
 
