@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import cin.ufpe.aps.AluCar.subsistemas.GoogleEmailService;
 import cin.ufpe.aps.AluCar.Facade;
+import cin.ufpe.aps.AluCar.models.Car;
 import cin.ufpe.aps.AluCar.models.Cartao;
 import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.SolicitacaoPagamento;
@@ -33,6 +34,11 @@ public class TelaReservaControllerMVC {
             return ResponseEntity.badRequest().body("Erro ao enviar e-mail.");
         }
     }*/
+
+    @GetMapping("/getCarroPorPlaca/{placa}")
+    public ResponseEntity<Car> getCarroPorPlaca(@PathVariable String placa) {
+        return facade.getCarroPorPlaca(placa);
+    }
 
     @PostMapping("/solicitaPagamento")
     public ResponseEntity<Boolean> solicitaPagamento(@RequestBody SolicitacaoPagamento pagamento) {

@@ -3,6 +3,7 @@ package cin.ufpe.aps.AluCar.dados.abstractFactory.reservas;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,10 +131,11 @@ public class RepositorioReservasH2 implements IRepositorioReservas{
             "'" + reserva.getDataTermino() + "'" +","+
             "'" + reserva.getUsuario() + "'"     +");";
 
-        System.out.println(sql);
+        System.out.println("\n" + sql);
 
-        try (ResultSet result = this.databaseDAOH2.executeQuery(sql)) {
-            System.out.println("nice");
+        try (Statement stmt = this.databaseDAOH2.createStatement()) {
+            stmt.executeUpdate(sql);
+            System.out.println("Reserva Cadastrada com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

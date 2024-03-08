@@ -57,10 +57,10 @@ INSERT INTO Locadora (nome, descricao, localizacao) VALUES
 
 -- Inserir dados na tabela Car
 INSERT INTO Car (modelo, placa, preco, ano, combustivel, transmissao, linkFotos, locadora) VALUES
-  ('Toyota Corolla', 'ABC1234', 200.00, 2020, 'Gasolina', 'Automatica', 'link_fotos_corolla.jpg', 1),
-  ('Volkswagen Gol', 'DEF5678', 150.00, 2018, 'Etanol', 'Manual', 'link_fotos_gol.jpg', 2),
-  ('Chevrolet Spin', 'GHI9012', 180.00, 2019, 'Flex', 'Automatica', 'link_fotos_spin.jpg', 3),
-  ('Jeep Wrangler', 'JKL3456', 250.00, 2022, 'Diesel', 'Manual', 'link_fotos_wrangler.jpg', 4);
+  ('Toyota Corolla', 'ABC1234', 200.00, 2020, 'Gasolina', 'Automatica', 'https://t.ctcdn.com.br/TTK4snJlPOGKuXIB29QtvxjaT0U=/1200x675/smart/i635860.jpeg', 1),
+  ('Volkswagen Gol', 'DEF5678', 150.00, 2018, 'Etanol', 'Manual', 'https://cdn.motor1.com/images/mgl/gRAz7/s1/vw-gol-2017.jpg', 2),
+  ('Chevrolet Spin', 'GHI9012', 180.00, 2019, 'Flex', 'Automatica', 'https://cdn.motor1.com/images/mgl/y2PR7G/s3/projecao-chevrolet-spin-2025---tudo-de-carro.jpg', 3),
+  ('Jeep Wrangler', 'JKL3456', 250.00, 2022, 'Diesel', 'Manual', 'https://destaquejeep.com.br/wp-content/uploads/2019/12/mini-wrangler.jpg.webp', 4);
 
 -- Inserir dados na tabela Usuario
 INSERT INTO Usuario (email, nome, senha, cartao) VALUES

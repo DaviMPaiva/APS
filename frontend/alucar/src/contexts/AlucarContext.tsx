@@ -12,6 +12,7 @@ type AlucarContextType = {
     reservaConfirmada: boolean;
     setReservaConfirmada: React.Dispatch<React.SetStateAction<boolean>>;
     reservarCarro: ( reserva: Reserva, cartao: Cartao ) => Promise<void>;
+    getCarroByPlaca: (placa: string) => Promise<Car>;
 };
 
 interface AlucarProviderProps {
@@ -61,8 +62,19 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
             });
     }
 
+    const getCarroByPlaca = async (placa: string): Promise<Car> => {
+        try {
+            const response = await axios.get(`http://localhost:8080/reserva/getCarroPorPlaca/${placa}`);
+            const carro = response.data;
+            return carro;
+        } catch (error) {
+            console.error(error);
+            return {} as Car;
+        }
+    }
+
     return (
-        <AlucarContext.Provider value={{ historico, setHistorico, getHistorico, pesquisaCarros, setPesquisaCarros, getCarrosDisponiveis, reservaConfirmada, setReservaConfirmada, reservarCarro }}>
+        <AlucarContext.Provider value={{ getCarroByPlaca, historico, setHistorico, getHistorico, pesquisaCarros, setPesquisaCarros, getCarrosDisponiveis, reservaConfirmada, setReservaConfirmada, reservarCarro }}>
             {children}
         </AlucarContext.Provider>
     );

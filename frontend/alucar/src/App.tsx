@@ -14,7 +14,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path='/historico' element={<Historico/>}/>
-                <Route path='/reservar' element={<Reservar/>}/>
+                <Route path='/reservar/:placa' element={<Reservar/>}/>
                 <Route path='/pesquisar-modelo' element={<PesquisarModelo/>}/>
                 <Route path='/reserva-solicitada' element={<ReservaSolicitada/>}/>
             </Routes> 
