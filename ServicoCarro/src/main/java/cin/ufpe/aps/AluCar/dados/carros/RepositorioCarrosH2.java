@@ -9,7 +9,7 @@ import java.util.List;
 
 import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.dados.DatabaseDAOH2;
-import cin.ufpe.aps.AluCar.models.Car;
+import cin.ufpe.aps.AluCar.models.*;
 
 public class RepositorioCarrosH2 implements IRepositorioCarros {
     private List<Car> listaCarros = new ArrayList<Car>();
@@ -53,13 +53,13 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
     public List<Reserva> fillCache() {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<List<Car>> response = restTemplate.exchange(
+            ResponseEntity<List<Reserva>> response = restTemplate.exchange(
                 url + "/reserva/getReservasMes",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Reserva>>() {});
             List<Reserva> cache = response.getBody();
-            System.out.println(carList);
+            System.out.println(cache);
             return cache;
         } catch (Exception e) {
             e.printStackTrace();

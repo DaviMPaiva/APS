@@ -8,7 +8,6 @@ import cin.ufpe.aps.AluCar.dados.FabricaConcretaSql;
 import cin.ufpe.aps.AluCar.dados.DatabaseDAO;
 
 import java.sql.Date;
-import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

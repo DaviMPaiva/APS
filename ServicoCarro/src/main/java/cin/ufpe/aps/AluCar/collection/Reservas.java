@@ -10,30 +10,34 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
 public class Reservas implements InterfaceReservas {
 
     private IRepositorioReservas repoReserva;
+    private List<Reserva> listaReserva;
     
     public Reservas(IRepositorioReservas repoReserva){
         this.repoReserva = repoReserva;
+        
     }
 
     @Override
     public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
         //pega todas as reservas para aquela data
-        System.out.println(reserva.getDataInicio);
-        System.out.println(Date.valueOf(reserva.getDataInicio));
+        System.out.println(reserva.getDataInicio());
 
         try {
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<List<Car>> response = restTemplate.exchange(
-                url + "/reserva/getReservasSolicitadas/" + reserva.getDataInicio + "/" + reserva.getDataTermino,
+            ResponseEntity<List<Reserva>> response = restTemplate.exchange(
+                "http://localhost:8082/reserva/getReservasSolicitadas/" + reserva.getDataInicio() + "/" + reserva.getDataTermino(),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Reserva>>() {});
-            List<Reserva> listaReserva = response.getBody();
-            System.out.println(carList);
-            return carList;
+            listaReserva = response.getBody();
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

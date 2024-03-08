@@ -49,6 +49,6 @@ public class TelaReservaControllerMVC {
 
     @GetMapping("/getReservasSolicitadas/{dataInicio}/{dataTermino}")
     public ResponseEntity<List<Reserva>> getReservasSolicitadas(@PathVariable String dataInicio, @PathVariable String dataTermino) {
-        return facade.getReservasMes();
+        return facade.getReservasSolicitadas(dataInicio, dataTermino);
     }
 }

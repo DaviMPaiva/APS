@@ -118,4 +118,9 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
 	public List<Reserva> validaReserva(Reserva reserva) {
         throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
 	}
+
+    @Override
+	public List<Reserva> validaAnyReserva(Reserva reserva) {
+        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
+	}
 }

@@ -7,12 +7,13 @@ import java.util.Set;
 
 import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.dados.carros.IRepositorioCarros;
-import cin.ufpe.aps.AluCar.models.Car;
+import cin.ufpe.aps.AluCar.models.*;
 
 public class Carros {
 
     private IRepositorioCarros repoCarros;
     private List<Car> carros;
+    private List<Reserva> cache;
     public Carros(IRepositorioCarros repoCarros){
         this.repoCarros = repoCarros;
     }
@@ -41,5 +42,15 @@ public class Carros {
         CarList carList = new CarList(newListCarros);
 
         return carList;
+    }
+
+    public List<Reserva> getCache(){
+        try {
+            this.cache = this.repoCarros.getCache();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cache;
     }
 }
