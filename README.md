@@ -19,6 +19,7 @@ Nossa proposta é um sistema de Aluguel de carros, no qual o usuário pode reali
 * Maven - versão >= 3.9.6
 
 ## Execução do programa
+Obs.: É necessário um arquivo .env
 
 1. Primeiro, instale as dependências do backend presentes pom.xml:
 
