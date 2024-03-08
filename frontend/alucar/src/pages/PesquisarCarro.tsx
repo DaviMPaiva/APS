@@ -9,7 +9,11 @@ export default function PesquisarModelo() {
 
     const [dataInicio, setDataInicio] = useState('');
     const [dataTermino, setDataTermino] = useState('');
-    const { getCarrosDisponiveis, pesquisaCarros } = useContext(AlucarContext);
+    const { getCarrosDisponiveis, pesquisaCarros, setPesquisaCarros } = useContext(AlucarContext);
+
+    useEffect(() => {
+        setPesquisaCarros([]);
+    }, [dataInicio, dataTermino])
 
     const handleChangeDataInicio = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDataInicio(event.target.value);

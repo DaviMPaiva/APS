@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseDAOH2 {
     private static final String JDBC_URL = "jdbc:h2:mem:alucar";
@@ -55,5 +56,14 @@ public class DatabaseDAOH2 {
     public int deleteData(int id) throws SQLException {
         String sql = "DELETE FROM your_table_name WHERE id = ?";
         return executeUpdate(sql, id);
+    }
+
+    public Statement createStatement() throws SQLException {
+        Connection connection = getConnection();
+        if (connection != null) {
+            return connection.createStatement();
+        } else {
+            throw new SQLException("Connection is not established. Can't create statement.");
+        }
     }
 }

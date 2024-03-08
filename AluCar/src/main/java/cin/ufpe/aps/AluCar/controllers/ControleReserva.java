@@ -31,11 +31,15 @@ public class ControleReserva {
     public boolean realizaPagamento(Reserva reserva, Reservas reservas, Cartao cartao, Usuario usuario, EmailService emailService){
         //realiza o pagamento 
         //SalvaDadosCartao
+        System.out.println("\nSetando Cartão");
         usuario.setCartao(cartao);
+        System.out.println("\nCartão setado\nCriando Reserva");
         //CriaNovaReserva
         reservas.criaNovaReserva(reserva);
+        System.out.println("\nReserva Criada\nEnviando Email");
         //EmailConfirmacao 
         emailService.enviarEmail(usuario.getEmail());
+        System.out.println("\nEmail Enviado");
         return true;
     }
 
