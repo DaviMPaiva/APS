@@ -3,108 +3,81 @@ package cin.ufpe.aps.AluCar.dados.carros;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Set;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.web.client.RestTemplate;
 import java.util.List;
+
 
 import cin.ufpe.aps.AluCar.dados.DatabaseDAOH2;
 import cin.ufpe.aps.AluCar.models.Car;
 
 public class RepositorioCarrosH2 implements IRepositorioCarros {
-    private DatabaseDAOH2 databaseDAOH2;
+    private List<Car> listaCarros = new ArrayList<Car>();
+    private String url = "http://localhost:8082";
 
     public RepositorioCarrosH2 (DatabaseDAOH2 databaseDAOH2){
-        this.databaseDAOH2 = databaseDAOH2;
+        //this.databaseDAOH2 = databaseDAOH2;
+        listaCarros = this.fillCarros();
+    }
+
+    public List<Car> fillCarros() {
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<List<Car>> response = restTemplate.exchange(
+                url + "/reserva/getCarros",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Car>>() {});
+            List<Car> carList = response.getBody();
+            System.out.println(carList);
+            return carList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     @Override
     public Car getCarro(String placaRecebe) {
         Car car = null;
-       
-        try (ResultSet result = this.databaseDAOH2.executeQuery("SELECT * FROM car WHERE placa = '"+  placaRecebe +"'")) {
-    
-            // Check if the result set has a row
-            if (result.next()) {
-                // Retrieve values from the result set
-                String modelo = result.getString("modelo");
-                String placa = result.getString("placa");
-                Float preco = result.getFloat("preco");
-                int ano = result.getInt("ano");
-                String combustivel = result.getString("combustivel");
-                String transmissao = result.getString("transmissao");
-                String linkFotos = result.getString("linkFotos");
-                Integer locadora = result.getInt("locadora");
-    
-                // Create a Car object using the retrieved values
-                car = new Car(modelo, placa, preco, ano, combustivel, transmissao, linkFotos, locadora);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        
+        if (this.listaCarros.isEmpty()) {
+            this.fillCarros();
         }
-    
+        for (Car carro : this.listaCarros) {
+            if (carro.getPlaca().equals(placaRecebe)) {
+                car = carro;
+            }
+        }
         return car;
     }
 
     @Override
     public List<Car> getAllCarro() {
-        Car car = null;
-        List<Car> listaCarros = new ArrayList<Car>();
-    
         
-        try (ResultSet result = this.databaseDAOH2.executeQuery("SELECT * FROM car")) {
-    
-            // Check if the result set has a row
-            while (result.next()) {
-                // Retrieve values from the result set
-                String modelo = result.getString("modelo");
-                String placa = result.getString("placa");
-                Float preco = result.getFloat("preco");
-                int ano = result.getInt("ano");
-                String combustivel = result.getString("combustivel");
-                String transmissao = result.getString("transmissao");
-                String linkFotos = result.getString("linkFotos");
-                Integer locadora = result.getInt("locadora");
-    
-                // Create a Car object using the retrieved values
-                car = new Car(modelo, placa, preco, ano, combustivel, transmissao, linkFotos, locadora);
-                listaCarros.add(car);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (this.listaCarros.isEmpty()) {
+            this.fillCarros();
         }
-    
-        return listaCarros;
+        return this.listaCarros;
     }
 
     @Override
     public List<Car> getCarrosModelo(String modeloPesquisa) {
-        Car car = null;
-        List<Car> listaCarros = new ArrayList<Car>();
-        String sql = "SELECT * FROM car WHERE modelo = '" + modeloPesquisa + "'";
-        System.out.println(sql);
-    
-        
-        try (ResultSet result = this.databaseDAOH2.executeQuery(sql)) {
-    
-            // Check if the result set has a row
-            while (result.next()) {
-                // Retrieve values from the result set
-                String modelo = result.getString("modelo");
-                String placa = result.getString("placa");
-                Float preco = result.getFloat("preco");
-                int ano = result.getInt("ano");
-                String combustivel = result.getString("combustivel");
-                String transmissao = result.getString("transmissao");
-                String linkFotos = result.getString("linkFotos");
-                Integer locadora = result.getInt("locadora");
-    
-                // Create a Car object using the retrieved values
-                car = new Car(modelo, placa, preco, ano, combustivel, transmissao, linkFotos, locadora);
-                listaCarros.add(car);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        List<Car> subListaCarros = new ArrayList<Car>();
+              
+        if (this.listaCarros.isEmpty()) {
+            this.fillCarros();
         }
-    
-        return listaCarros;
+        for (Car carro : this.listaCarros) {
+            if (carro.getModelo().equals(modeloPesquisa)) {
+                subListaCarros.add(carro);
+            }
+        }
+
+        return subListaCarros;
     }
 
     @Override
@@ -112,5 +85,4 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
     }
-
 }
