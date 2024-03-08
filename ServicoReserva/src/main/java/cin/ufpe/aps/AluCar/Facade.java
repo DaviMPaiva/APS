@@ -103,5 +103,16 @@ public class Facade {
         List<Reserva> x = this.controleReserva.getReservasMes(this.proxy);
         return ResponseEntity.ok(x);
     }
+
+    public ResponseEntity<List<Reserva>> getReservasSolicitadas(String dataInicio, String dataTermino) {
+        
+        //cria a class o mais cedo possivel
+        Date dataInicial = Date.valueOf(dataInicio);
+        Date dataFinal = Date.valueOf(dataTermino);
+        reservaProposta = new Reserva(null, null, dataInicial, dataFinal, null, null);
+
+        List<Reserva> x = this.reservas.validaAnyReserva(reservaProposta);
+        return ResponseEntity.ok(x);
+    }
     
 }

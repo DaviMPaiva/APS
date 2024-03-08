@@ -7,17 +7,30 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
-
+import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.dados.DatabaseDAOH2;
 import cin.ufpe.aps.AluCar.models.Car;
 
 public class RepositorioCarrosH2 implements IRepositorioCarros {
     private List<Car> listaCarros = new ArrayList<Car>();
+    private List<Reserva> cache = new ArrayList<Reserva>();
     private String url = "http://localhost:8082";
 
     public RepositorioCarrosH2 (DatabaseDAOH2 databaseDAOH2){
         //this.databaseDAOH2 = databaseDAOH2;
         listaCarros = this.fillCarros();
+        System.out.println(listaCarros);
+        cache = this.fillCache();
+        System.out.println(cache);
+
+    }
+
+    public List<Reserva> getCache() {
+        return this.cache;
+    }
+
+    public List<Car> getAllCars() {
+        return this.listaCarros;
     }
 
     public List<Car> fillCarros() {
@@ -31,6 +44,23 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
             List<Car> carList = response.getBody();
             System.out.println(carList);
             return carList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public List<Reserva> fillCache() {
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<List<Car>> response = restTemplate.exchange(
+                url + "/reserva/getReservasMes",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Reserva>>() {});
+            List<Reserva> cache = response.getBody();
+            System.out.println(carList);
+            return cache;
         } catch (Exception e) {
             e.printStackTrace();
             throw e;

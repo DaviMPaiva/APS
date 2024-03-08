@@ -21,7 +21,24 @@ public class Reservas implements InterfaceReservas {
     @Override
     public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
         //pega todas as reservas para aquela data
-        List<Reserva> listaReserva = repoReserva.validaAnyReserva(reserva);
+        System.out.println(reserva.getDataInicio);
+        System.out.println(Date.valueOf(reserva.getDataInicio));
+
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<List<Car>> response = restTemplate.exchange(
+                url + "/reserva/getReservasSolicitadas/" + reserva.getDataInicio + "/" + reserva.getDataTermino,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Reserva>>() {});
+            List<Reserva> listaReserva = response.getBody();
+            System.out.println(carList);
+            return carList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+        //List<Reserva> listaReserva = repoReserva.validaAnyReserva(reserva);
         //pega todos os carros nessas reservas
         Set<String> carroSet = new HashSet<>();
 

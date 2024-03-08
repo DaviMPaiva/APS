@@ -77,6 +77,13 @@ public class Reservas implements InterfaceReservas {
 	}
 
     @Override
+	public List<Reserva> validaAnyReserva(Reserva reserva) {
+        // make the queries
+        List<Reserva> listaReserva = repoReserva.validaAnyReserva(reserva);
+        return listaReserva;
+	}
+
+    @Override
     public List<Reserva> getReservasMes() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getReservasMes'");
