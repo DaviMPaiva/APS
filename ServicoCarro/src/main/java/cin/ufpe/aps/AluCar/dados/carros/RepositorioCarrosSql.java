@@ -114,5 +114,17 @@ public class RepositorioCarrosSql implements IRepositorioCarros{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
     }
+
+    @Override
+    public List<Reserva> getCache() throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCache'");
+    }
+
+    @Override
+    public List<Car> getAllCars() throws SQLException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAllCars'");
+    }
     
 }

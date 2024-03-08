@@ -41,8 +41,6 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
         this.currentDate = Date.valueOf(dateFormat.format(currentDateL));
         this.futureDate = Date.valueOf(dateFormat.format(futureDateL));
 
-        //pega todas as reservas para o proximo mes
-        this.cache_reservas = repoReserva.GetReservaMes(this.currentDate,this.futureDate);
     }
     
     @Override
@@ -50,6 +48,9 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
         if( reserva.getDataInicio().after(this.currentDate) && reserva.getDataInicio().before(this.futureDate)){
             //pega todas as reservas para aquela data
             List<Reserva> listaReserva = new ArrayList<Reserva>();
+            System.out.println("Erro depois da cache");
+            this.cache_reservas = cars.getCache();
+            System.out.println("Entrou na cache");
 
             for (Reserva res : this.cache_reservas) {
                 if ((res.getDataInicio().after(reserva.getDataInicio()) && res.getDataInicio().before(reserva.getDataTermino()))
@@ -72,6 +73,7 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
 
             return carros;
         }else{
+            System.out.println("Não entrou na cache");
             return reservas.pesquisaCarrosDisponiveis(reserva, cars);
         }
     }

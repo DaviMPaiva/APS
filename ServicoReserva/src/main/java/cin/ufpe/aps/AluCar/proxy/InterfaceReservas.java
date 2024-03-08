@@ -30,4 +30,6 @@ public interface InterfaceReservas {
     CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars);
 
     List<Reserva> validaReserva(Reserva reserva);
+
+    List<Reserva> validaAnyReserva(Reserva reserva);
 }
