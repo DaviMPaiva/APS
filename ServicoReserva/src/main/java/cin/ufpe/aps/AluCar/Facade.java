@@ -16,6 +16,7 @@ import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
 
 import cin.ufpe.aps.AluCar.subsistemas.GoogleEmailService;
+import cin.ufpe.aps.AluCar.utils.PropertiesReader;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class Facade {
     private Usuario usuarioE;
 	private ControleReserva controleReserva;
     private GoogleEmailService emailService;
+    private PropertiesReader propertiesReader;
     //private Reserva reservaProposta;
 	//private Usuarios usuarios;
 
@@ -52,6 +54,7 @@ public class Facade {
         this.controleHistorico = new ControleHistorico();
         this.controleReserva = new ControleReserva();
         this.emailService = new GoogleEmailService();
+        this.propertiesReader = new PropertiesReader();
 
         //mocks
         Cartao cartao = new Cartao("1111222233334444", "João da Silva", "12/25", "123"); 
