@@ -3,7 +3,6 @@ package cin.ufpe.aps.AluCar.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.Iterator.CarIterator;
 import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.Carros;

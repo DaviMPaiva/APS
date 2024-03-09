@@ -5,8 +5,6 @@ import java.util.List;
 import cin.ufpe.aps.AluCar.models.Car;
 import cin.ufpe.aps.AluCar.models.Usuario;
 
-import java.util.ArrayList;
-
 public class CarList {
     private List<Car> cars;
 

@@ -10,4 +10,4 @@ public class AluCarApplication {
 		SpringApplication.run(AluCarApplication.class, args);
 	}
 
-}
+} 

@@ -6,18 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
-
-import cin.ufpe.aps.AluCar.collection.Reservas;
-import cin.ufpe.aps.AluCar.dados.DatabaseDAOH2;
 import cin.ufpe.aps.AluCar.models.*;
 
-public class RepositorioCarrosH2 implements IRepositorioCarros {
+public class RepositorioCarros implements IRepositorioCarros {
     private List<Car> listaCarros = new ArrayList<Car>();
     private List<Reserva> cache = new ArrayList<Reserva>();
     private String url = "http://localhost:8082";
 
-    public RepositorioCarrosH2 (DatabaseDAOH2 databaseDAOH2){
-        //this.databaseDAOH2 = databaseDAOH2;
+    public RepositorioCarros (){
         listaCarros = this.fillCarros();
         System.out.println(listaCarros);
         cache = this.fillCache();
@@ -27,10 +23,6 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
 
     public List<Reserva> getCache() {
         return this.cache;
-    }
-
-    public List<Car> getAllCars() {
-        return this.listaCarros;
     }
 
     public List<Car> fillCarros() {
@@ -105,11 +97,5 @@ public class RepositorioCarrosH2 implements IRepositorioCarros {
         }
 
         return subListaCarros;
-    }
-
-    @Override
-    public void setCarro(Car car) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
     }
 }

@@ -2,7 +2,6 @@ package cin.ufpe.aps.AluCar.collection;
 
 import cin.ufpe.aps.AluCar.proxy.*;
 import cin.ufpe.aps.AluCar.Iterator.CarList;
-import cin.ufpe.aps.AluCar.dados.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.*;
 
 import java.sql.Date;
@@ -15,14 +14,12 @@ import java.util.Set;
 
 public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
 
-    private IRepositorioReservas repoReserva;
     private List<Reserva> cache_reservas;
     private Reservas reservas;
     private Date currentDate;
     private Date futureDate;
 
-    public ProxyReservaCarrosDisponiveis(IRepositorioReservas repoReserva, Reservas reservas){
-        this.repoReserva = repoReserva;
+    public ProxyReservaCarrosDisponiveis(Reservas reservas){
         this.reservas = reservas;
         this.MakeCache();
     }
