@@ -6,11 +6,15 @@ spring:
     cloud:
         gateway:
             routes:
-                - id: account
-                  uri: lb://account
+                - id: carro-client
+                  uri: lb://carro-client
                   predicates:
-                  - Path=/account/**
-                - id: transaction
-                  uri: lb://transaction
+                  - Path=/pesquisar/**
+                - id: reserva-client
+                  uri: lb://reserva-client
                   predicates:
-                    - Path=/transaction/**
+                    - Path=/reserva/**
+                - id: reserva-client
+                  uri: lb://reserva-client
+                  predicates:
+                    - Path=/historico/**
