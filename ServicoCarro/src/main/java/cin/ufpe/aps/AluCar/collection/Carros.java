@@ -13,6 +13,7 @@ public class Carros {
 
     private IRepositorioCarros repoCarros;
     private List<Car> carros;
+    private Car carro;
     private List<Reserva> cache;
     public Carros(IRepositorioCarros repoCarros){
         this.repoCarros = repoCarros;
@@ -26,6 +27,16 @@ public class Carros {
         }
 
         return carros;
+    }
+
+    public Car getCarroPorPlaca(String placa){
+        try {
+            this.carro = this.repoCarros.getCarro(placa);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return carro;
     }
 
     public CarList pesquisaCarrosDisponiveis(Set<String> carroSet){

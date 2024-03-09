@@ -91,9 +91,9 @@ public class RepositorioReservasH2 implements IRepositorioReservas{
         List<Reserva> listaReserva = new ArrayList<Reserva>();
         Reserva reservaBuffer = null;
 
-        String sql = "SELECT * FROM reserva WHERE (datainicio < '" + reserva.getDataInicio() + "' AND datatermino > '" + reserva.getDataTermino() + "') " +
-             "OR (datainicio > '" + reserva.getDataInicio() + "' AND datainicio < '" + reserva.getDataTermino() + "') " +
-             "OR (datatermino > '" + reserva.getDataInicio() + "' AND datatermino < '" + reserva.getDataTermino() + "')";
+        String sql = "SELECT * FROM reserva WHERE (datainicio <= '" + reserva.getDataInicio() + "' AND datatermino >= '" + reserva.getDataTermino() + "') " +
+             "OR (datainicio >= '" + reserva.getDataInicio() + "' AND datainicio <= '" + reserva.getDataTermino() + "') " +
+             "OR (datatermino >= '" + reserva.getDataInicio() + "' AND datatermino <= '" + reserva.getDataTermino() + "')";
 
         
         try (ResultSet result = this.databaseDAOH2.executeQuery(sql)) {

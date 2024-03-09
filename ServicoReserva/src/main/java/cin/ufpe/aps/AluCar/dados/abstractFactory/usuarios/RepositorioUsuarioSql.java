@@ -1,9 +1,6 @@
 package cin.ufpe.aps.AluCar.dados.abstractFactory.usuarios;
 
-import java.util.ArrayList;
-
 import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
-import cin.ufpe.aps.AluCar.models.Cartao;
 import cin.ufpe.aps.AluCar.models.Usuario;
 
 public class RepositorioUsuarioSql implements IRepositorioUsuarios{

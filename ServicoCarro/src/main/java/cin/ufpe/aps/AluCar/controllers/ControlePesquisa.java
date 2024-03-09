@@ -32,4 +32,8 @@ public class ControlePesquisa {
         return carReturnList;
     }
 
+    public Car getCarroPorPlaca(Carros carros, String placa) {
+        return carros.getCarroPorPlaca(placa);
+    }
+
 }

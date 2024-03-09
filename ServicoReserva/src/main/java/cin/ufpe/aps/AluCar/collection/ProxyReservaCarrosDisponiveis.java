@@ -1,31 +1,23 @@
 package cin.ufpe.aps.AluCar.collection;
 
 import cin.ufpe.aps.AluCar.proxy.*;
-import cin.ufpe.aps.AluCar.Iterator.CarList;
-import cin.ufpe.aps.AluCar.collection.Carros;
-import cin.ufpe.aps.AluCar.collection.Reservas;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.reservas.IRepositorioReservas;
 import cin.ufpe.aps.AluCar.models.*;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
 
     private IRepositorioReservas repoReserva;
     private List<Reserva> cache_reservas;
-    private Reservas reservas;
     private Date currentDate;
     private Date futureDate;
 
-    public ProxyReservaCarrosDisponiveis(IRepositorioReservas repoReserva, Reservas reservas){
+    public ProxyReservaCarrosDisponiveis(IRepositorioReservas repoReserva){
         this.repoReserva = repoReserva;
-        this.reservas = reservas;
         this.MakeCache();
     }
 
@@ -81,37 +73,6 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
     @Override
     public void criaNovaReserva(Reserva reserva) {
         throw new UnsupportedOperationException("Unimplemented method 'setCarro'");
-    }
-
-    @Override
-    public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
-        if( reserva.getDataInicio().after(this.currentDate) && reserva.getDataInicio().before(this.futureDate)){
-            //pega todas as reservas para aquela data
-            List<Reserva> listaReserva = new ArrayList<Reserva>();
-
-            for (Reserva res : this.cache_reservas) {
-                if ((res.getDataInicio().after(reserva.getDataInicio()) && res.getDataInicio().before(reserva.getDataTermino()))
-                    || (res.getDataTermino().after(reserva.getDataInicio()) && res.getDataTermino().before(reserva.getDataTermino()))
-                    || (res.getDataInicio().before(reserva.getDataInicio()) && res.getDataTermino().after(reserva.getDataTermino()))){
-                        listaReserva.add(res);
-                    }
-            }
-            
-            //pega todos os carros nessas reservas
-            Set<String> carroSet = new HashSet<>();
-
-            //pega os carros sem repeticao
-            for (Reserva res : listaReserva) {
-                carroSet.add(res.getCarro());
-            }
-
-            //passa os carros e o usario para a classe de carros fazer um interator
-            CarList carros = cars.pesquisaCarrosDisponiveis(carroSet);
-
-            return carros;
-        }else{
-            return reservas.pesquisaCarrosDisponiveis(reserva, cars);
-        }
     }
 
 	@Override

@@ -16,8 +16,9 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
 
     private List<Reserva> cache_reservas;
     private Reservas reservas;
-    private Date currentDate;
+    //private Date currentDate;
     private Date futureDate;
+    private Date yesterday;
 
     public ProxyReservaCarrosDisponiveis(Reservas reservas){
         this.reservas = reservas;
@@ -29,20 +30,24 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
         LocalDate currentDateL = LocalDate.now();
 
         // Get the date 30 days from now
-        LocalDate futureDateL = currentDateL.plusDays(30);
+        LocalDate futureDateL = currentDateL.plusDays(31);
+
+        // Get the date from yesterday
+        LocalDate yesterdayL = currentDateL.minusDays(1);
 
         // Define the desired date format
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         // Convert dates to strings in the specified format
-        this.currentDate = Date.valueOf(dateFormat.format(currentDateL));
+        //this.currentDate = Date.valueOf(dateFormat.format(currentDateL));
         this.futureDate = Date.valueOf(dateFormat.format(futureDateL));
+        this.yesterday = Date.valueOf(dateFormat.format(yesterdayL));
 
     }
     
     @Override
     public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
-        if( reserva.getDataInicio().after(this.currentDate) && reserva.getDataInicio().before(this.futureDate)){
+        if( reserva.getDataInicio().after(this.yesterday) && reserva.getDataInicio().before(this.futureDate)){
             //pega todas as reservas para aquela data
             List<Reserva> listaReserva = new ArrayList<Reserva>();
             System.out.println("Erro depois da cache");
@@ -50,9 +55,11 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
             System.out.println("Entrou na cache");
 
             for (Reserva res : this.cache_reservas) {
-                if ((res.getDataInicio().after(reserva.getDataInicio()) && res.getDataInicio().before(reserva.getDataTermino()))
-                    || (res.getDataTermino().after(reserva.getDataInicio()) && res.getDataTermino().before(reserva.getDataTermino()))
-                    || (res.getDataInicio().before(reserva.getDataInicio()) && res.getDataTermino().after(reserva.getDataTermino()))){
+                System.out.println(res.getCarro());
+                
+                if ((res.getDataInicio().after(Date.valueOf(reserva.getDataInicio().toLocalDate().minusDays(1))) && res.getDataInicio().before(Date.valueOf(reserva.getDataTermino().toLocalDate().plusDays(1))))
+                    || (res.getDataTermino().after(Date.valueOf(reserva.getDataInicio().toLocalDate().minusDays(1))) && res.getDataTermino().before(Date.valueOf(reserva.getDataTermino().toLocalDate().plusDays(1))))
+                    || (res.getDataInicio().before(Date.valueOf(reserva.getDataInicio().toLocalDate().plusDays(1))) && res.getDataTermino().after(Date.valueOf(reserva.getDataTermino().toLocalDate().minusDays(1))))){
                         listaReserva.add(res);
                     }
             }

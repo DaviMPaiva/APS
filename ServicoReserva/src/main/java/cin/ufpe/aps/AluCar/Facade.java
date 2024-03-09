@@ -1,16 +1,12 @@
 package cin.ufpe.aps.AluCar;
 
-import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.collection.*;
 import cin.ufpe.aps.AluCar.controllers.ControleHistorico;
 import cin.ufpe.aps.AluCar.controllers.ControleReserva;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaH2;
 import cin.ufpe.aps.AluCar.dados.abstractFactory.FabricaConcretaSql;
-import cin.ufpe.aps.AluCar.dados.abstractFactory.DatabaseDAO;
 
 import java.sql.Date;
-import java.sql.SQLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -37,7 +33,7 @@ public class Facade {
 	private ControleReserva controleReserva;
     private GoogleEmailService emailService;
     //private Reserva reservaProposta;
-	private Usuarios usuarios;
+	//private Usuarios usuarios;
 
     //mock
 	private Reserva reservaProposta;
@@ -45,13 +41,13 @@ public class Facade {
 
     public Facade(){
       
-        //FabricaConcretaSql fabrica = new FabricaConcretaSql();
-        FabricaConcretaH2 fabrica = new FabricaConcretaH2();
+        FabricaConcretaSql fabrica = new FabricaConcretaSql();
+        //FabricaConcretaH2 fabrica = new FabricaConcretaH2();
 
         this.carros = new Carros(fabrica.CriaRepoCarros());
         this.reservas = new Reservas(fabrica.CriaRepoReservas());
-        this.proxy = new ProxyReservaCarrosDisponiveis(fabrica.CriaRepoReservas(), reservas);
-        this.usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
+        this.proxy = new ProxyReservaCarrosDisponiveis(fabrica.CriaRepoReservas());
+        //this.usuarios = new Usuarios(fabrica.CriaRepoUsuario()); 
 
         this.controleHistorico = new ControleHistorico();
         this.controleReserva = new ControleReserva();
@@ -84,13 +80,6 @@ public class Facade {
     public ResponseEntity<List<Car>> getCarros() {
         List<Car> cars = this.controleReserva.getCarros(carros);
         return ResponseEntity.ok(cars);
-    }
-
-    public ResponseEntity<Car> getCarroPorPlaca(String placa) {
-        Car carro = this.controleReserva.getCarroPorPlaca(carros, placa);
-        System.out.println(carro);
-       
-        return ResponseEntity.ok(carro);
     }
 
     public ResponseEntity<Boolean> solicitaPagamento(Reserva reserva, Cartao cartao) {

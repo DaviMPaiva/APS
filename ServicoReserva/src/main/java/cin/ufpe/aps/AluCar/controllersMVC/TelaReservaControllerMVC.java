@@ -1,12 +1,9 @@
 package cin.ufpe.aps.AluCar.controllersMVC;
 
-import javax.mail.AuthenticationFailedException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import cin.ufpe.aps.AluCar.subsistemas.GoogleEmailService;
 import cin.ufpe.aps.AluCar.Facade;
 import cin.ufpe.aps.AluCar.models.Car;
 import cin.ufpe.aps.AluCar.models.Cartao;
@@ -21,14 +18,7 @@ import java.util.List;
 public class TelaReservaControllerMVC {
 
     @Autowired
-    private GoogleEmailService gmailService;
-    @Autowired
     private Facade facade;
-
-    @GetMapping("/getCarroPorPlaca/{placa}")
-    public ResponseEntity<Car> getCarroPorPlaca(@PathVariable String placa) {
-        return facade.getCarroPorPlaca(placa);
-    }
 
     @GetMapping("/getCarros")
     public ResponseEntity<List<Car>> getCarros() {

@@ -66,4 +66,11 @@ public class Facade {
         List<Car> x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros, this.usuarioH);
         return ResponseEntity.ok(x);
     }
+
+    public ResponseEntity<Car> getCarroPorPlaca(String placa) {
+        Car carro = this.controlePesquisa.getCarroPorPlaca(carros, placa);
+        System.out.println(carro);
+       
+        return ResponseEntity.ok(carro);
+    }
 }

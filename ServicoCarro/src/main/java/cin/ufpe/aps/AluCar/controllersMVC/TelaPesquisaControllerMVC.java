@@ -31,4 +31,9 @@ public class TelaPesquisaControllerMVC {
     public ResponseEntity<List<Car>> pesquisaCarrosDisponiveis(@PathVariable String dataInicio, @PathVariable String dataTermino) {
         return facade.pesquisaCarrosDisponiveis(dataInicio, dataTermino);
     }
+
+    @GetMapping("/getCarroPorPlaca/{placa}")
+    public ResponseEntity<Car> getCarroPorPlaca(@PathVariable String placa) {
+        return facade.getCarroPorPlaca(placa);
+    }
 }
