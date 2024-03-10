@@ -7,18 +7,20 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import cin.ufpe.aps.AluCar.models.*;
+import cin.ufpe.aps.AluCar.utils.PropertiesReader;
 
 public class RepositorioCarros implements IRepositorioCarros {
     private List<Car> listaCarros = new ArrayList<Car>();
     private List<Reserva> cache = new ArrayList<Reserva>();
     private String url = "http://localhost:8082";
+    private PropertiesReader propertiesReader;
 
     public RepositorioCarros (){
+        this.propertiesReader = new PropertiesReader();
         listaCarros = this.fillCarros();
         System.out.println(listaCarros);
         cache = this.fillCache();
         System.out.println(cache);
-
     }
 
     public List<Reserva> getCache() {
@@ -29,7 +31,7 @@ public class RepositorioCarros implements IRepositorioCarros {
         try {
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<List<Car>> response = restTemplate.exchange(
-                url + "/reserva/getCarros",
+                propertiesReader.getProperty("reserva_url") + "reserva/getCarros",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Car>>() {});
@@ -46,7 +48,7 @@ public class RepositorioCarros implements IRepositorioCarros {
         try {
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<List<Reserva>> response = restTemplate.exchange(
-                url + "/reserva/getReservasMes",
+                propertiesReader.getProperty("reserva_url") + "reserva/getReservasMes",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Reserva>>() {});

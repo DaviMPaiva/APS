@@ -13,7 +13,7 @@ import cin.ufpe.aps.AluCar.Facade;
 import cin.ufpe.aps.AluCar.models.Reserva;
 
 @RequestMapping("/historico")
-@CrossOrigin(origins = "${carro_url}")
+//@CrossOrigin(origins = "${carro_url}")
 @RestController
 public class TelaHistoricoControllerMVC {
 

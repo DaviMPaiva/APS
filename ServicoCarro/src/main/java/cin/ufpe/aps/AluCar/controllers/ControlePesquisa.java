@@ -9,6 +9,7 @@ import cin.ufpe.aps.AluCar.collection.Carros;
 import cin.ufpe.aps.AluCar.models.Reserva;
 import cin.ufpe.aps.AluCar.models.Usuario;
 import cin.ufpe.aps.AluCar.proxy.InterfaceReservas;
+import cin.ufpe.aps.AluCar.utils.PropertiesReader;
 import cin.ufpe.aps.AluCar.models.Car;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +21,9 @@ public class ControlePesquisa {
         return carros.PesquisaCarrosModelo(modelo);
     }
 
-    public List<Car> pesquisaCarrosDisponiveis(InterfaceReservas reservas, Reserva reserva, Carros cars, Usuario usuario) {
+    public List<Car> pesquisaCarrosDisponiveis(InterfaceReservas reservas, Reserva reserva, Carros cars, Usuario usuario, PropertiesReader propertiesReader) {
         List<Car> carReturnList = new ArrayList<>();
-        CarList carList = reservas.pesquisaCarrosDisponiveis(reserva, cars);
+        CarList carList = reservas.pesquisaCarrosDisponiveis(reserva, cars, propertiesReader);
         CarIterator carIterator = carList.createIterator(usuario);
         while (carIterator.hasNext()) {
             Car car = carIterator.next();

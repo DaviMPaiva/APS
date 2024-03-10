@@ -1,6 +1,7 @@
 package cin.ufpe.aps.AluCar.collection;
 
 import cin.ufpe.aps.AluCar.proxy.*;
+import cin.ufpe.aps.AluCar.utils.PropertiesReader;
 import cin.ufpe.aps.AluCar.Iterator.CarList;
 import cin.ufpe.aps.AluCar.models.*;
 
@@ -46,7 +47,7 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
     }
     
     @Override
-    public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars) {
+    public CarList pesquisaCarrosDisponiveis(Reserva reserva, Carros cars, PropertiesReader propertiesReader) {
         if( reserva.getDataInicio().after(this.yesterday) && reserva.getDataInicio().before(this.futureDate)){
             //pega todas as reservas para aquela data
             List<Reserva> listaReserva = new ArrayList<Reserva>();
@@ -78,7 +79,7 @@ public class ProxyReservaCarrosDisponiveis implements InterfaceReservas {
             return carros;
         }else{
             System.out.println("Não entrou na cache");
-            return reservas.pesquisaCarrosDisponiveis(reserva, cars);
+            return reservas.pesquisaCarrosDisponiveis(reserva, cars, propertiesReader);
         }
     }
 }

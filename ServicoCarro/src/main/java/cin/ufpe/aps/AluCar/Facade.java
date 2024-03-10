@@ -67,7 +67,7 @@ public class Facade {
         Date dataFinal = Date.valueOf(dataTermino);
         reservaProposta = new Reserva(null, null, dataInicial, dataFinal, null, null);
 
-        List<Car> x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros, this.usuarioH);
+        List<Car> x = this.controlePesquisa.pesquisaCarrosDisponiveis(this.proxy, reservaProposta, carros, this.usuarioH,this.propertiesReader);
         return ResponseEntity.ok(x);
     }
 

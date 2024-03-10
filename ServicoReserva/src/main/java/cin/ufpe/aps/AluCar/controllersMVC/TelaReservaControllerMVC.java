@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reserva")
-@CrossOrigin(origins = "${carro_url}")
+//@CrossOrigin(origins = "${carro_url}")
 public class TelaReservaControllerMVC {
 
     @Autowired
