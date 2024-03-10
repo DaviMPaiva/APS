@@ -43,8 +43,8 @@ public class Facade {
 
     public Facade(){
       
-        FabricaConcretaSql fabrica = new FabricaConcretaSql();
-        //FabricaConcretaH2 fabrica = new FabricaConcretaH2();
+        //FabricaConcretaSql fabrica = new FabricaConcretaSql();
+        FabricaConcretaH2 fabrica = new FabricaConcretaH2();
 
         this.carros = new Carros(fabrica.CriaRepoCarros());
         this.reservas = new Reservas(fabrica.CriaRepoReservas());

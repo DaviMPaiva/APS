@@ -1,0 +1,21 @@
+version: "3"
+services:
+    discovery:
+        build:
+            context: ./discovery-server/
+        ports:
+            - "8761:8761"
+        networks:
+            - my-network
+    gateway:
+        build:
+            context: ./gateway/
+        depends_on:
+            - discovery
+        ports:
+            - "8084:8084"
+        networks:
+            - my-network
+networks:
+    my-network:
+        driver: bridge
