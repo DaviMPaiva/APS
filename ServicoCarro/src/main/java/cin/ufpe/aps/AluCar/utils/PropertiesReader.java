@@ -10,11 +10,9 @@ public class PropertiesReader {
     private Properties properties;
 
     public PropertiesReader() {
-        try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
-            System.out.println(input);
-            properties = new Properties();
+        properties = new Properties();
+        try (InputStream input = getClass().getResourceAsStream("/application.yml")) {
             properties.load(input);
-            System.out.println(properties);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
