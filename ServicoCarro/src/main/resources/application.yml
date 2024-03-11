@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka
+    instance:
+      preferIpAddress: true
+
+spring:
+  application:
+    name: carro-client
+
+reserva_url: http://reserva:8082/

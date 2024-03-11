@@ -1,0 +1,28 @@
+version: "3"
+services:
+    discovery:
+        build:
+            context: ./discovery-server/
+        ports:
+            - "8761:8761"
+    reserva:
+        build:
+            context: ./ServicoReserva/
+        depends_on:
+            - discovery
+        ports:
+            - "8082:8082"
+    carro:
+        build:
+            context: ./ServicoCarro/
+        depends_on:
+            - reserva
+        ports:
+            - "8081:8081"
+    gateway:
+        build:
+            context: ./gateway/
+        depends_on:
+            - carro
+        ports:
+            - "8084:8084"

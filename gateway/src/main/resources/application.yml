@@ -1,0 +1,33 @@
+server:
+    port: 8084
+eureka:
+    client:
+        service-url:
+            defaultZone: http://discovery:8761/eureka/
+spring:
+    application:
+      name: gateway
+    cloud:
+        gateway:
+            globalcors:
+              cors-configurations:
+                '[/**]':
+                  allowedOrigins: "*"
+                  allowedHeaders:
+                    - content-type
+                  allowedMethods:
+                    - GET
+                    - POST
+            routes:
+                - id: carro-client
+                  uri: lb://carro-client
+                  predicates:
+                  - Path=/pesquisar/**
+                - id: reserva-client
+                  uri: lb://reserva-client
+                  predicates:
+                    - Path=/reserva/**
+                - id: reserva-client
+                  uri: lb://reserva-client
+                  predicates:
+                    - Path=/historico/**
