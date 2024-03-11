@@ -15,7 +15,7 @@ import cin.ufpe.aps.AluCar.Facade;
 import cin.ufpe.aps.AluCar.models.Car;
 
 @RequestMapping("/pesquisar")
-//@CrossOrigin(origins = "http://localhost:8082")
+// @CrossOrigin(origins = {"http://gateway:8084", "http://localhost:5173", "http://discovery:8761"})
 @RestController
 public class TelaPesquisaControllerMVC {
 

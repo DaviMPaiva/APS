@@ -1,4 +1,4 @@
-package cin.ufpe.aps.AluCar;
+package br.ufpe.cin.banking.gateway;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +16,10 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Allow specific origins
-        // config.addAllowedOrigin("http://localhost:5173");
-        // config.addAllowedOrigin("http://gateway:8084");
-        // config.addAllowedOrigin("http://discovery:8761");
+        config.addAllowedOrigin("http://localhost:5173");
+        config.addAllowedOrigin("http://reserva:8082");
+        config.addAllowedOrigin("http://carro:8081");
+
 
         // Allow specific HTTP methods
         config.addAllowedMethod(HttpMethod.GET);

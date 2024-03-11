@@ -28,7 +28,7 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
     const [reservaConfirmada, setReservaConfirmada] = useState(false);
 
     const getHistorico = async () => {
-        axios.get('http://localhost:8080/historico/visualizarHistorico')
+        axios.get('http://localhost:8084/historico/visualizarHistorico')
             .then((response) => {
                 setHistorico(response.data);
                 console.log(response.data);
@@ -40,7 +40,7 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
     }
 
     const getCarrosDisponiveis = async (dataInicio: string, dataTermino: string) => {   
-        axios.get(`http://localhost:8080/pesquisar/pesquisaCarrosDisponiveis/${dataInicio}/${dataTermino}`)
+        axios.get(`http://localhost:8084/pesquisar/pesquisaCarrosDisponiveis/${dataInicio}/${dataTermino}`)
             .then((response) => {
                 setPesquisaCarros(response.data);
                 console.log(response.data);
@@ -52,7 +52,7 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
 
     const reservarCarro = async (reserva: Reserva, cartao: Cartao) => {
         console.log(reserva, cartao);
-        axios.post('http://localhost:8080/reserva/solicitaPagamento', {reserva, cartao})
+        axios.post('http://localhost:8084/reserva/solicitaPagamento', {reserva, cartao})
             .then((response) => {
                 setReservaConfirmada(response.data);
                 console.log(response.data);
@@ -64,7 +64,7 @@ export function AlucarProvider({ children }: AlucarProviderProps) {
 
     const getCarroByPlaca = async (placa: string): Promise<Car> => {
         try {
-            const response = await axios.get(`http://localhost:8080/reserva/getCarroPorPlaca/${placa}`);
+            const response = await axios.get(`http://localhost:8084/pesquisar/getCarroPorPlaca/${placa}`);
             const carro = response.data;
             return carro;
         } catch (error) {
